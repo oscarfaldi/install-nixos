@@ -131,6 +131,7 @@
     fd
 
     # Media & thumbnails
+    pavucontrol
     mpv
     qimgv
     ffmpegthumbnailer
