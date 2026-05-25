@@ -101,10 +101,58 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    
+    # Editors & terminal utils
     git
     nano
     wget
+
+    # Network
     networkmanagerapplet
+
+    # Browser
+
+    # File manager & archive
+    thunar
+    file-roller
+    unzip
+    p7zip
+    unrar
+
+    # Terminal ecosystem
+    alacritty
+    fastfetch
+    btop
+    zoxide
+    eza
+    bat
+    fzf
+    ripgrep
+    fd
+
+    # Media & thumbnails
+    mpv
+    qimgv
+    ffmpegthumbnailer
+    tumbler
+
+    # Clipboard
+    wl-clipboard
+
+    # Fonts
+    nerd-fonts.jetbrains-mono
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+
+    # Misc GUI apps
+    mousepad
+    gnome-calculator
+
+    # NAS / filesystem
+    nfs-utils
+    gvfs
+    gvfs-nfs
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
