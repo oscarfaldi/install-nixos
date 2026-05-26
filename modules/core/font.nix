@@ -10,4 +10,4 @@
     noto-fonts-emoji-blob-bin
     jetbrains-mono
   ];
-};
+}
