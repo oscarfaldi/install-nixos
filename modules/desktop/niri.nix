@@ -11,9 +11,9 @@
     xdg-utils
 
     # File manager
-    thunar
-    thunar-archive-plugin
-    thunar-volman
+    xfce.thunar
+    xfce.thunar-archive-plugin
+    xfce.thunar-volman
 
     # Bar & launcher
     waybar
