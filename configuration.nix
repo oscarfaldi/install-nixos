@@ -73,6 +73,12 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Generate standard user folders like Downloads, Pictures, Videos, etc.
+    xdg.userDirs = {
+      enable = true;
+      createDirectories = true;
+  };
+
   # Enable low-latency audio scheduling
   security.rtkit.enable = true;
   
