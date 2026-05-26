@@ -23,7 +23,10 @@
       ./modules/desktop/greeter.nix
     ];
 
-  # Bootloader.
+  # Enable flakes and error experimental with new Nix CLI
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+# Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
