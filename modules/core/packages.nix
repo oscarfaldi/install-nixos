@@ -34,7 +34,7 @@
     # Image compatibility
     ffmpeg
     ffmpegthumbnailer
-    tumbler
+    xfce.tumbler
     libwebp
     libavif
 
