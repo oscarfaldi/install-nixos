@@ -89,6 +89,13 @@
     # Browser
     brave
 
+    # PDF editor and reader
+    okular
+
+    # Markdown text editor
+    obsidian
+    syncthing
+
     # Image compatibility
     libwebp
     libavif
