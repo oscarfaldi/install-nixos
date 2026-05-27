@@ -23,7 +23,7 @@
     pavucontrol
 
     # Browser
-    brave
+    firefox
 
     # PDF reader
     kdePackages.okular
