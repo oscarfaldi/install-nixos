@@ -56,7 +56,7 @@
   services.tumbler.enable = true;
 
   # Enable dconf for GTK applications and settings persistence
-  programs.dconf.enable = true
+  programs.dconf.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -72,12 +72,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Generate standard user folders like Downloads, Pictures, Videos, etc.
-    xdg.userDirs = {
-      enable = true;
-      createDirectories = true;
-  };
 
   # Enable low-latency audio scheduling
   security.rtkit.enable = true;
