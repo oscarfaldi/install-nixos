@@ -16,6 +16,7 @@
       ./modules/core/nic.nix
       ./modules/core/mounts.nix
       ./modules/core/font.nix
+      ./modules/core/pwa.nix
 
       # Desktop modules
       ./modules/desktop/niri.nix
