@@ -1,8 +1,11 @@
 { ... }:
 
 {
-  # Create a reusable screenshot script for Niri.
-  environment.etc."niri/scripts/screenshot.sh".text = ''
+  # Create Niri scripts directory and generate screenshot script automatically.
+  system.activationScripts.niriScreenshotScript.text = ''
+    mkdir -p /home/oscarfaldi/.config/niri/scripts
+
+    cat > /home/oscarfaldi/.config/niri/scripts/screenshot.sh << 'EOF'
     #!/usr/bin/env bash
 
     DIR="$HOME/Pictures/Screenshots/$(date +%Y-%m)"
@@ -12,10 +15,8 @@
     FILE="$DIR/$(date +%Y-%m-%d_%H-%M-%S).png"
 
     grim -g "$(slurp)" "$FILE"
-  '';
+    EOF
 
-  # Make all Niri scripts executable automatically during rebuild.
-  system.activationScripts.makeNiriScriptsExecutable.text = ''
-    chmod +x /home/oscarfaldi/.config/niri/scripts/*.sh
+    chmod +x /home/oscarfaldi/.config/niri/scripts/screenshot.sh
   '';
 }
