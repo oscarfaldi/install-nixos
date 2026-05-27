@@ -5,18 +5,21 @@
     packages = with pkgs; [
 
       # Nerd Fonts
-      nerd-fonts.jetbrains-mono
       nerd-fonts.iosevka
+      nerd-fonts.blex-mono
 
-      # IBM Plex Family
+      # IBM Plex
       ibm-plex
 
-      # Unicode / International Fonts
+      # Unicode / International
       noto-fonts
       noto-fonts-cjk-sans
 
       # Emoji
       noto-fonts-color-emoji
+
+      # Optional old-school terminal feel
+      terminus_font
     ];
 
     fontconfig = {
@@ -25,9 +28,10 @@
       defaultFonts = {
 
         monospace = [
-          "JetBrainsMono Nerd Font"
+          "IosevkaTermSlab Nerd Font"
+          "BlexMono Nerd Font"
           "IBM Plex Mono"
-          "Iosevka Nerd Font"
+          "Terminus"
         ];
 
         sansSerif = [
