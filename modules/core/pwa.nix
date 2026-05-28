@@ -33,6 +33,12 @@ in
     })
 
     (mkPWA {
+      name = "Canva";
+      url = "https://canva.com";
+      icon = "/etc/nixos/assets/icons/canva.svg";
+    })
+
+    (mkPWA {
       name = "WhatsApp";
       url = "https://web.whatsapp.com";
       icon = "/etc/nixos/assets/icons/whatsapp.svg";
