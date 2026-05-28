@@ -1,0 +1,36 @@
+```nix id="q7p7sp"
+{ config, pkgs, ... }:
+
+{
+  # Keyboard remapping daemon
+  services.keyd = {
+    enable = true;
+
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+
+        settings = {
+          main = {
+
+            # Force proper Function Keys
+            f1 = "f1";
+            f2 = "f2";
+            f3 = "f3";
+            f4 = "f4";
+            f5 = "f5";
+            f6 = "f6";
+            f7 = "f7";
+            f8 = "f8";
+            f9 = "f9";
+            f10 = "f10";
+            f11 = "f11";
+            f12 = "f12";
+
+          };
+        };
+      };
+    };
+  };
+}
+```
