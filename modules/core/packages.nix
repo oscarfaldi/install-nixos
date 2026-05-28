@@ -19,8 +19,9 @@
     vimPlugins.LazyVim
 
     # NFS compatibility
-    cifs-utils
     gvfs
+    nfs-utils
+    cifs-utils
 
     # Audio center
     pavucontrol
