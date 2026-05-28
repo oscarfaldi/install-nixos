@@ -31,6 +31,9 @@
     waybar
     fuzzel
 
+    # Clipboard
+    wl-clipboard
+
     # Notifications
     mako
     libnotify
