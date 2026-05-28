@@ -10,7 +10,7 @@ let
       desktopName = name;
 
       # Force native Wayland Microsoft Edge PWA mode
-      exec = "microsoft-edge --ozone-platform=wayland --app=${url}";
+      exec = "microsoft-edge --app=${url}";
 
       icon = icon;
 
