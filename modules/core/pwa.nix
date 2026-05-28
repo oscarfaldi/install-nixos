@@ -3,11 +3,14 @@
 let
   mkPWA = { name, url, icon }:
     pkgs.makeDesktopItem {
+      # Internal desktop entry name
       name = lib.strings.toLower name;
 
+      # Displayed app name
       desktopName = name;
 
-      exec = "chromium --app=${url}";
+      # Force native Wayland Chromium PWA mode
+      exec = "chromium --ozone-platform=wayland --app=${url}";
 
       icon = icon;
 
@@ -16,6 +19,10 @@ let
 
 in
 {
+  # Native Wayland support for Chromium and Electron apps
+  environment.sessionVariables = { NIXOS_OZONE_WL = "1"; 
+  };
+
   environment.systemPackages = with pkgs; [
     chromium
 
