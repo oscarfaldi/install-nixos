@@ -43,7 +43,8 @@
     swayidle
 
     # Screenshots
-    grimshot
+    grim
+    slurp
 
     # Media controls
     playerctl
