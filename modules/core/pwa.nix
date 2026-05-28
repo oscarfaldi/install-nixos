@@ -9,8 +9,8 @@ let
       # Displayed app name
       desktopName = name;
 
-      # Force native Wayland Chromium PWA mode
-      exec = "chromium --ozone-platform=wayland --app=${url}";
+      # Force native Wayland Microsoft Edge PWA mode
+      exec = "microsoft-edge --ozone-platform=wayland --app=${url}";
 
       icon = icon;
 
@@ -19,12 +19,12 @@ let
 
 in
 {
-  # Native Wayland support for Chromium and Electron apps
+  # Native Wayland support for Microsoft Edge and Electron apps
   environment.sessionVariables = { NIXOS_OZONE_WL = "1"; 
   };
 
   environment.systemPackages = with pkgs; [
-    chromium
+    microsoft-edge
 
     (mkPWA {
       name = "ChatGPT";
