@@ -15,6 +15,7 @@
       ./modules/core/hosts.nix
       ./modules/core/nic.nix
       ./modules/core/mounts.nix
+      ./modules/core/keyboard.nix
       ./modules/core/font.nix
       ./modules/core/pwa.nix
 
