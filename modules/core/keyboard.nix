@@ -13,18 +13,22 @@
           main = {
 
             # Force proper Function Keys
-            f1 = "f1";
-            f2 = "f2";
-            f3 = "f3";
-            f4 = "f4";
-            f5 = "f5";
-            f6 = "f6";
-            f7 = "f7";
-            f8 = "f8";
-            f9 = "f9";
-            f10 = "f10";
-            f11 = "f11";
-            f12 = "f12";
+            brightnessdown = "f1";
+            brightnessup   = "f2";
+
+            scale          = "f3";
+            dashboard      = "f4";
+
+            kbdillumdown   = "f5";
+            kbdillumup     = "f6";
+
+            previoussong   = "f7";
+            playpause      = "f8";
+            nextsong       = "f9";
+
+            mute           = "f10";
+            volumedown     = "f11";
+            volumeup       = "f12";
 
           };
         };
