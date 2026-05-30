@@ -23,8 +23,9 @@
 
     # NFS compatibility
     gvfs
-    nfs-utils
-    cifs-utils
+
+    # Store credentials & password
+    gnome-keyring
 
     # Audio center
     pavucontrol
