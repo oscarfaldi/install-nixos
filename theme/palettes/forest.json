@@ -4,5 +4,8 @@
   "surface": "#2a3128",
   "primary": "#7a8d54",
   "accent": "#b8b14a",
-  "text": "#d7d7c7"
+  "text": "#d7d7c7",
+
+  "gtk_theme": "Graphite-Dark",
+  "icon_theme": "Papirus-Dark"
 }
