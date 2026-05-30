@@ -142,6 +142,9 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # Enable gnome keyring for passwords and credentials
+  services.gnome.gnome-keyring.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
