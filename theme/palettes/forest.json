@@ -1,5 +1,6 @@
 {
   "name": "forest",
+
   "background": "#1f241f",
   "surface": "#2a3128",
   "primary": "#7a8d54",
@@ -7,5 +8,7 @@
   "text": "#d7d7c7",
 
   "gtk_theme": "Graphite-Dark",
-  "icon_theme": "Papirus-Dark"
+  "icon_theme": "Papirus-Dark",
+  "cursor_theme": "Bibata-Modern-Ice",
+  "font": "Inter 10"
 }
