@@ -50,6 +50,7 @@
     xfce.tumbler
     libwebp
     libavif
+    librsvg
 
     # File manager & archive
     file-roller
@@ -77,6 +78,6 @@
     mpv
 
     # Image viewer
-    qimgv
+    loupe
   ];
 }
