@@ -10,6 +10,7 @@
     keyd
 
     # Network manager
+    networkmanager
     networkmanagerapplet
 
     # Editors & terminal utils
@@ -17,6 +18,7 @@
     nano
     wget
     zsh
+    zsh-autosuggestions
     alacritty
     neovim
     vimPlugins.LazyVim
@@ -31,7 +33,7 @@
     gnome-keyring
 
     # Audio center
-    pavucontrol
+    pwvucontrol
 
     # PDF reader
     kdePackages.okular
@@ -57,6 +59,7 @@
     xdg-user-dirs
 
     # Terminal ecosystem
+    zed
     fastfetch
     btop
     zoxide
