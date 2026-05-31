@@ -25,7 +25,7 @@
 
     # Bar & launcher
     waybar
-    fuzzel
+    walker
 
     # Clipboard
     cliphist
