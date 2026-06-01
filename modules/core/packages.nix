@@ -3,6 +3,9 @@
   # Enable gnome keyring for passwords and credentials
   services.gnome.gnome-keyring.enable = true;
 
+  # Make dir Documents, Downloads and etc.
+  xdg.userDirs.enable = true;
+
   # Syncthing file synchronization service
   services.syncthing = {
     enable = true;
@@ -33,9 +36,6 @@
     # Calculator
     gnome-calculator
 
-    # Store credentials & password
-    gnome-keyring
-
     # Audio center
     pavucontrol
 
@@ -47,20 +47,22 @@
     onlyoffice-desktopeditors
     obsidian
 
-    # Image compatibility
+    # Media and doc compatibility
     ffmpeg
     ffmpegthumbnailer
     xfce.tumbler
     libwebp
     libavif
     librsvg
+    libgepub
+    libopenraw
+    libgsf
 
     # File manager & archive
     file-roller
     unzip
     p7zip
     unrar
-    xdg-user-dirs
 
     # Terminal ecosystem
     zed
