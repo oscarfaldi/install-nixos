@@ -29,7 +29,7 @@
   # Enable flakes and error experimental with new Nix CLI
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-# Bootloader.
+  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -59,15 +59,6 @@
 
   # Power management daemon
   services.upower.enable = true;
-
-  # Virtual filesystem support for network drives, USB, trash, and sidebar integration
-  services.gvfs.enable = true;
-
-  # Enable USB automount and removable media support
-  services.udisks2.enable = true;
-
-  # Enable dconf for GTK applications or gnome and settings persistence
-  programs.dconf.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -116,22 +107,8 @@
 
   # List services that you want to enable:
 
-  # Syncthing file synchronization service
-  services.syncthing = {
-    enable = true;
-
-    user = "oscarfaldi";
-    dataDir = "/home/oscarfaldi";
-    configDir = "/home/oscarfaldi/.config/syncthing";
-
-    openDefaultPorts = true;
-  };
-
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
-  # Enable gnome keyring for passwords and credentials
-  services.gnome.gnome-keyring.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
