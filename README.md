@@ -1,4 +1,4 @@
-# Hostname Convention
+# Devices Hostname
 
 My devices are named after landscapes of the Pacific Northwest.
 
