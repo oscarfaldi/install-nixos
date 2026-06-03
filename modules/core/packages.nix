@@ -41,7 +41,7 @@
     kdePackages.okular
 
     # Words, notes & sync
-    xfce.mousepad
+    mousepad
     onlyoffice-desktopeditors
     obsidian
 
