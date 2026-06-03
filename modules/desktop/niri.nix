@@ -12,9 +12,6 @@
   # Bluetooth GUI
   services.blueman.enable = true;
 
-  # Enable thumbnail on file manager
-  services.tumbler.enable = true;
-
   # Virtual filesystem support for network drives, USB, trash, and sidebar integration
   services.gvfs.enable = true;
 
@@ -30,10 +27,7 @@
     xwayland-satellite
 
     # File manager
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-volman
-    xfce.xfconf
+    nautilus
     yazi
 
     # Wallpaper
@@ -45,15 +39,9 @@
     papirus-icon-theme
     bibata-cursors
     
-
     # Bar & launcher
     waybar
-    rofi
-    rofi-calc
-    rofi-power-menu
-
-    # Clipboard
-    cliphist
+    walker
 
     # Notifications
     mako
