@@ -41,7 +41,7 @@
     
     # Bar & launcher
     waybar
-    walker
+    fuzzel
 
     # Notifications
     mako
