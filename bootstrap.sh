@@ -29,17 +29,26 @@ echo "✓ System rebuilt."
 echo
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo " Installing dotfiles..."
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+mkdir -p ~/.config
+
+cp -rf dotfiles/* ~/.config/
+
+echo
+echo "✓ Dotfiles installed."
+echo
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo " Installing helper scripts..."
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 mkdir -p ~/.local/bin
 
-chmod +x scripts/*
-
-ln -sf "$(pwd)/scripts/screenshot" ~/.local/bin/screenshot
-ln -sf "$(pwd)/scripts/rebuild" ~/.local/bin/rebuild
-ln -sf "$(pwd)/scripts/update" ~/.local/bin/update
-ln -sf "$(pwd)/scripts/cleanup" ~/.local/bin/cleanup
+for script in scripts/*; do
+    chmod +x "$script"
+    ln -sf "$(pwd)/$script" ~/.local/bin/$(basename "$script")
 
 echo
 echo "✓ Scripts installed."
@@ -62,7 +71,9 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo " Cleaning NetworkManager..."
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-nmcli connection delete "Wired connection 1" 2>/dev/null || true
+for i in 1 2 3; do
+    nmcli connection delete "Wired connection $i" 2>/dev/null || true
+done
 
 echo
 echo "✓ NetworkManager cleaned."
