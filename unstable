@@ -3,7 +3,7 @@
 set -e
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " Switching to unstable..."
+echo " Switching Rainier to unstable..."
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 sudo nix-channel --remove nixos 2>/dev/null || true
@@ -19,7 +19,7 @@ echo "✓ Unstable channel enabled."
 echo
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " Rebuilding system..."
+echo " Rebuilding Rainier system..."
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 sudo nixos-rebuild switch
