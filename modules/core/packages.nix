@@ -63,7 +63,7 @@ programs.bash = {
     libgsf
 
     # File manager & archive
-    xdg-user-dirs
+    xdg-user-dirs-gtk
     file-roller
     unzip
     p7zip
