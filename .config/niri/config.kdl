@@ -336,7 +336,7 @@ binds {
     Mod+W                               { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
-    CTRL+Shift+1                        { spawn "screenshot"; }
+    CTRL+Shift+1                        { spawn "/home/oscarfaldi/.local/bin/screenshot"; }
 
     // ─── Emergency Escape Key ───
     // Use this when a fullscreen app blocks your keybinds.
