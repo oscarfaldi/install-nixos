@@ -221,12 +221,12 @@ output "DP-3" {
 
 binds {
     // ─── Applications ───
-    Mod+Return			                hotkey-overlay-title="Open Terminal: Ghosty" { spawn "ghostty"; }
-    Mod+B				                hotkey-overlay-title="Open Browser: Chromium" { spawn "chromium"; }
-    Mod+D				                hotkey-overlay-title="Open App Launcher: Fuzzel" { spawn "fuzzel"; }
+    Mod+Return                          hotkey-overlay-title="Open Terminal: Ghosty" { spawn "ghostty"; }
+    Mod+B                               hotkey-overlay-title="Open Browser: Chromium" { spawn "chromium"; }
+    Mod+D                               hotkey-overlay-title="Open App Launcher: Fuzzel" { spawn "fuzzel"; }
     Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
-    Mod+ALT+L			                hotkey-overlay-title="Lock Screen: Swaylock" { spawn "swaylock"; }
-    Mod+Shift+Q			                hotkey-overlay-title="Power Menu: Wlogout" { spawn "wlogout"; }
+    Mod+ALT+L                           hotkey-overlay-title="Lock Screen: Swaylock" { spawn "swaylock"; }
+    Mod+Shift+Q                         hotkey-overlay-title="Power Menu: Wlogout" { spawn "wlogout"; }
     Mod+Shift+A                         hotkey-overlay-title="AI Assistant: ChatGPT" { spawn "chatgpt"; }
     Mod+Shift+S                         hotkey-overlay-title="Notes: Mousepad" { spawn "mousepad"; }
     Mod+Shift+C                         hotkey-overlay-title="Calculator" { spawn "gnome-calculator"; }
