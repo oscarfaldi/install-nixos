@@ -29,37 +29,43 @@ in
     (mkPWA {
       name = "ChatGPT";
       url = "https://chatgpt.com";
-      icon = "/home/oscarfaldi/.system/assets/icons/chatgpt.svg";
+      icon = "/etc/nixos/assets/icons/chatgpt.svg";
     })
 
     (mkPWA {
       name = "Canva";
       url = "https://canva.com";
-      icon = "/home/oscarfaldi/.system/assets/icons/canva.svg";
+      icon = "/etc/nixos/assets/icons/canva.svg";
     })
 
     (mkPWA {
       name = "Gemini";
       url = "https://gemini.google.com";
-      icon = "/home/oscarfaldi/.system/assets/icons/gemini.png";
+      icon = "/etc/nixos/assets/icons/gemini.png";
     })
 
     (mkPWA {
       name = "Claude";
       url = "https://claude.ai";
-      icon = "/home/oscarfaldi/.system/assets/icons/claude.svg";
+      icon = "/etc/nixos/assets/icons/claude.svg";
+    })
+
+    (mkPWA {
+      name = "Unraid";
+      url = "http://10.10.10.10:8081/";
+      icon = "/etc/nixos/assets/icons/claude.svg";
     })
 
     (mkPWA {
       name = "WhatsApp";
       url = "https://web.whatsapp.com";
-      icon = "/home/oscarfaldi/.system/assets/icons/whatsapp.svg";
+      icon = "/etc/nixos/assets/icons/whatsapp.svg";
     })
 
     (mkPWA {
       name = "Gmail";
       url = "https://mail.google.com";
-      icon = "/home/oscarfaldi/.system/assets/icons/gmail.svg";
+      icon = "/etc/nixos/assets/icons/gmail.svg";
     })
   ];
 }
