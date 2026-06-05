@@ -63,6 +63,18 @@ in
     })
 
     (mkPWA {
+      name = "Wordpress - Oscar Faldi";
+      url = "https://oscarfaldi.com/wp-admin";
+      icon = "/etc/nixos/assets/icons/oscarfaldi.svg";
+    })
+
+    (mkPWA {
+      name = "Grafana";
+      url = "http://10.10.10.10:3050/";
+      icon = "/etc/nixos/assets/icons/grafana.svg";
+    })
+
+    (mkPWA {
       name = "Gmail";
       url = "https://mail.google.com";
       icon = "/etc/nixos/assets/icons/gmail.svg";
