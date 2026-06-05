@@ -119,19 +119,18 @@ success "Local utilities installed"
 # Shell Environment
 # ============================================================
 
+# Configure Bash so custom scripts are available from any terminal
+
 section "Configuring Shell"
 
-if [ ! -f "$HOME/.bashrc" ]; then
-    # Writing minimal shell config
-    cat > "$HOME/.bashrc" << 'EOF'
-# Rainier shell configuration
-export PATH="$HOME/.local/bin:$PATH"
-[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
-command -v zoxide >/dev/null && eval "$(zoxide init bash)"
-EOF
+if [ ! -f "$REPO_DIR/.config/bashrc" ]; then
+    fail "Missing .config/bashrc"
 fi
 
-grep -q ".local/bin" "$HOME/.bashrc" || fail ".bashrc missing PATH configuration"
+cp -f "$REPO_DIR/.config/bashrc" "$HOME/.bashrc"
+
+grep -q ".local/bin" "$HOME/.bashrc" || \
+    fail ".bashrc missing PATH configuration"
 
 success "Shell configured"
 
