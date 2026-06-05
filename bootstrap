@@ -1,114 +1,197 @@
 #!/usr/bin/env bash
 
-set -e
+set -Eeuo pipefail
 
 REPO_DIR="/etc/nixos"
 
-echo
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " Rainier Bootstrap"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo
 
 # ============================================================
-
-# Dotfiles
-
+# Helpers
 # ============================================================
 
-echo "Installing user configuration..."
+fail() {
+    echo
+    echo "✗ $1"
+    echo
+    exit 1
+}
+
+section() {
+    echo
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo " $1"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo
+}
+
+success() {
+    echo
+    echo "✓ $1"
+    echo
+}
+
+
+# ============================================================
+# Header
+# ============================================================
+
+section "Rainier Bootstrap"
+
+echo "Repository : $REPO_DIR"
+echo "User       : $USER"
+echo "Home       : $HOME"
+
+
+# ============================================================
+# Repository Validation
+# ============================================================
+
+section "Validating Repository"
+
+[ -d "$REPO_DIR" ] || fail "Repository not found: $REPO_DIR"
+
+[ -d "$REPO_DIR/.config" ] || fail "Missing $REPO_DIR/.config"
+
+[ -d "$REPO_DIR/.local" ] || fail "Missing $REPO_DIR/.local"
+
+success "Repository verified"
+
+
+# ============================================================
+# User Configuration
+# ============================================================
+
+section "Installing User Configuration"
 
 mkdir -p "$HOME/.config"
 
-if [ -d "$REPO_DIR/dotfiles" ]; then
-cp -rf "$REPO_DIR/dotfiles/"* "$HOME/.config/"
-fi
+CONFIG_SOURCE_COUNT=$(find "$REPO_DIR/.config" -mindepth 1 | wc -l)
 
-echo
-echo "✓ Dotfiles installed."
-echo
+[ "$CONFIG_SOURCE_COUNT" -gt 0 ] || fail ".config repository is empty"
 
-# ============================================================
+cp -rf "$REPO_DIR/.config/." "$HOME/.config/"
 
-# Local Utilities
-
-# ============================================================
-
-echo "Installing local utilities..."
-
-mkdir -p "$HOME/.local"
-
-if [ -d "$REPO_DIR/.local" ]; then
-cp -rf "$REPO_DIR/.local/"* "$HOME/.local/"
-fi
-
-echo
-echo "✓ Local utilities installed."
-echo
-
-# ============================================================
-
-# User Directories
-
-# ============================================================
-
-echo "Checking user directories..."
-
-mkdir -p 
-"$HOME/Documents" 
-"$HOME/Downloads" 
-"$HOME/Music" 
-"$HOME/Pictures" 
-"$HOME/Videos" 
-"$HOME/Games" 
-"$HOME/Templates"
-
-echo
-echo "✓ User directories ready."
-echo
-
-# ============================================================
-
-# NetworkManager Cleanup
-
-# ============================================================
-
-echo "Cleaning NetworkManager..."
-
-nmcli -t -f NAME connection show 2>/dev/null | while read -r conn; do
-case "$conn" in
-Wired\ connection*)
-nmcli connection delete "$conn" >/dev/null 2>&1 || true
-;;
-esac
+# Verify critical configs
+for dir in niri waybar fuzzel ghostty; do
+    [ -e "$HOME/.config/$dir" ] || fail "Missing config: $dir"
 done
 
-echo
-echo "✓ NetworkManager cleaned."
-echo
+CONFIG_INSTALLED_COUNT=$(find "$HOME/.config" -mindepth 1 | wc -l)
+
+echo "Repository entries : $CONFIG_SOURCE_COUNT"
+echo "Installed entries  : $CONFIG_INSTALLED_COUNT"
+
+success "User configuration installed"
+
 
 # ============================================================
-
-# Finished
-
+# Local Utilities
 # ============================================================
 
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " Bootstrap Complete"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo
+section "Installing Local Utilities"
+
+mkdir -p "$HOME/.local/bin"
+
+LOCAL_SOURCE_COUNT=$(find "$REPO_DIR/.local" -mindepth 1 | wc -l)
+
+[ "$LOCAL_SOURCE_COUNT" -gt 0 ] || fail ".local repository is empty"
+
+cp -rf "$REPO_DIR/.local/." "$HOME/.local/"
+
+# Make every script executable
+find "$HOME/.local/bin" -type f -exec chmod +x {} \;
+
+# Verify critical scripts
+for script in rebuild rebuild-boot upgrade clean version screenshot wallpaper wallpaperd theme; do
+    [ -f "$HOME/.local/bin/$script" ] || fail "Missing script: $script"
+    [ -x "$HOME/.local/bin/$script" ] || fail "Script not executable: $script"
+done
+
+LOCAL_INSTALLED_COUNT=$(find "$HOME/.local" -mindepth 1 | wc -l)
+
+echo "Repository entries : $LOCAL_SOURCE_COUNT"
+echo "Installed entries  : $LOCAL_INSTALLED_COUNT"
+
+success "Local utilities installed"
+
+
+# ============================================================
+# Shell Environment
+# ============================================================
+
+section "Configuring Shell"
+
+if [ ! -f "$HOME/.bashrc" ]; then
+    # Writing minimal shell config
+    cat > "$HOME/.bashrc" << 'EOF'
+# Rainier shell configuration
+export PATH="$HOME/.local/bin:$PATH"
+[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
+command -v zoxide >/dev/null && eval "$(zoxide init bash)"
+EOF
+fi
+
+grep -q ".local/bin" "$HOME/.bashrc" || fail ".bashrc missing PATH configuration"
+
+success "Shell configured"
+
+
+# ============================================================
+# User Directories
+# ============================================================
+
+section "Checking User Directories"
+
+# Create and verify in one pass
+for dir in Documents Downloads Music Pictures Videos Games Templates; do
+    mkdir -p "$HOME/$dir"
+    [ -d "$HOME/$dir" ] || fail "Directory missing: $dir"
+done
+
+success "User directories ready"
+
+
+# ============================================================
+# NetworkManager Cleanup
+# ============================================================
+
+section "Cleaning NetworkManager"
+
+nmcli -t -f NAME connection show 2>/dev/null | while read -r conn; do
+    case "$conn" in
+        Wired\ connection*)
+            nmcli connection delete "$conn" >/dev/null 2>&1 || true
+            ;;
+    esac
+done
+
+success "NetworkManager cleaned"
+
+
+# ============================================================
+# Summary
+# ============================================================
+
+section "Bootstrap Complete"
 
 echo "Rainier is configured."
 echo
 echo "Installed:"
-echo "  • Dotfiles"
-echo "  • Local utilities"
-echo "  • User directories"
+echo " • User configuration"
+echo " • Local utilities"
+echo " • Shell environment"
+echo " • User directories"
+echo
+echo "Verified:"
+echo " • .config"
+echo " • .local"
+echo " • Executable permissions"
+echo " • .bashrc"
 echo
 echo "Next boot will activate:"
-echo "  • Theme"
-echo "  • Wallpaper"
-echo "  • Startup services"
+echo " • Theme"
+echo " • Wallpaper"
+echo " • Startup services"
 echo
 echo "Rebooting in 10 seconds..."
 echo "Press Ctrl+C to cancel."
