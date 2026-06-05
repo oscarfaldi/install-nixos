@@ -4,52 +4,52 @@
       xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info"
 >
 
-  <bookmark href="smb://10.10.20.10/oscarfaldi/">
-    <title>oscarfaldi on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/oscarfaldi/">
+    <title>oscarfaldi</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/personalbranding/">
-    <title>personalbranding on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/personalbranding">
+    <title>personalbranding</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/mulino/">
-    <title>mulino on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/mulino/">
+    <title>mulino</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/academy/">
-    <title>academy on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/academy/">
+    <title>academy</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/family/">
-    <title>family on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/family/">
+    <title>family</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/media/">
-    <title>media on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/media/">
+    <title>media</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/download/">
-    <title>download on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/download/">
+    <title>download</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/games/">
-    <title>games on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/games/">
+    <title>games</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/toolkit/">
-    <title>toolkit on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/toolkit/">
+    <title>toolkit</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/snapshot/">
-    <title>snapshot on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/snapshot/">
+    <title>snapshot</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/valhalla/">
-    <title>valhalla on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/valhalla/">
+    <title>valhalla</title>
   </bookmark>
 
-  <bookmark href="smb://10.10.20.10/archive/">
-    <title>archive on 10.10.20.10</title>
+  <bookmark href="nfs://10.10.20.10/mnt/user/archive/">
+    <title>archive</title>
   </bookmark>
 
 </xbel>
