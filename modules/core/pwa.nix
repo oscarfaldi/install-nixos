@@ -53,7 +53,7 @@ in
     (mkPWA {
       name = "Unraid";
       url = "http://10.10.10.10:8081/";
-      icon = "/etc/nixos/assets/icons/claude.svg";
+      icon = "/etc/nixos/assets/icons/unraid.svg";
     })
 
     (mkPWA {
