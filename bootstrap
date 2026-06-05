@@ -4,75 +4,116 @@ set -e
 
 REPO_DIR="/etc/nixos"
 
+echo
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " Installing dotfiles..."
+echo " Rainier Bootstrap"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo
 
-mkdir -p ~/.config
+# ============================================================
+
+# Dotfiles
+
+# ============================================================
+
+echo "Installing user configuration..."
+
+mkdir -p "$HOME/.config"
 
 if [ -d "$REPO_DIR/dotfiles" ]; then
-cp -rf "$REPO_DIR/dotfiles/"* ~/.config/
+cp -rf "$REPO_DIR/dotfiles/"* "$HOME/.config/"
 fi
 
 echo
 echo "✓ Dotfiles installed."
 echo
 
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " Installing helper scripts..."
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+# ============================================================
 
-mkdir -p ~/.local/bin
+# Local Utilities
 
-if [ -d "$REPO_DIR/scripts" ]; then
-    for script in "$REPO_DIR"/scripts/*; do
-        [ -f "$script" ] || continue
+# ============================================================
 
-        chmod +x "$script"
-        ln -sf "$script" ~/.local/bin/$(basename "$script")
-    done
+echo "Installing local utilities..."
+
+mkdir -p "$HOME/.local"
+
+if [ -d "$REPO_DIR/.local" ]; then
+cp -rf "$REPO_DIR/.local/"* "$HOME/.local/"
 fi
 
 echo
-echo "✓ Scripts installed."
+echo "✓ Local utilities installed."
 echo
 
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " Applying theme..."
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+# ============================================================
 
-gsettings set org.gnome.desktop.interface gtk-theme Graphite-Dark || true
-gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark || true
-gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice || true
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark || true
+# User Directories
+
+# ============================================================
+
+echo "Checking user directories..."
+
+mkdir -p 
+"$HOME/Documents" 
+"$HOME/Downloads" 
+"$HOME/Music" 
+"$HOME/Pictures" 
+"$HOME/Videos" 
+"$HOME/Games" 
+"$HOME/Templates"
 
 echo
-echo "✓ Theme applied."
+echo "✓ User directories ready."
 echo
 
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " Cleaning NetworkManager..."
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+# ============================================================
 
-nmcli -t -f NAME connection show | while read -r conn; do
-[[ "$conn" == Wired\ connection* ]] && 
-nmcli connection delete "$conn" 2>/dev/null || true
+# NetworkManager Cleanup
+
+# ============================================================
+
+echo "Cleaning NetworkManager..."
+
+nmcli -t -f NAME connection show 2>/dev/null | while read -r conn; do
+case "$conn" in
+Wired\ connection*)
+nmcli connection delete "$conn" >/dev/null 2>&1 || true
+;;
+esac
 done
 
 echo
 echo "✓ NetworkManager cleaned."
 echo
 
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " Cleaning old generations..."
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+# ============================================================
 
-sudo nix-collect-garbage -d
+# Finished
 
+# ============================================================
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo " Bootstrap Complete"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo
-echo "✓ Garbage collection complete."
+
+echo "Rainier is configured."
+echo
+echo "Installed:"
+echo "  • Dotfiles"
+echo "  • Local utilities"
+echo "  • User directories"
+echo
+echo "Next boot will activate:"
+echo "  • Theme"
+echo "  • Wallpaper"
+echo "  • Startup services"
+echo
+echo "Rebooting in 10 seconds..."
+echo "Press Ctrl+C to cancel."
 echo
 
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " Bootstrap complete."
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
+sleep 10
+
+sudo reboot
