@@ -176,6 +176,7 @@ output "DP-3" {
         spawn-at-startup "swayidle"
         spawn-at-startup "waybar"
         spawn-at-startup "awww-daemon"
+		spawn-at-startup "wallpaper"
 	
 	// Applications
         spawn-at-startup "chromium" "--app=https://chatgpt.com"
