@@ -4,13 +4,13 @@
   programs.niri.enable = true;
 
   # Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
+  # hardware.bluetooth = {
+    # enable = true;
+    # powerOnBoot = true;
+  # };
 
   # Bluetooth GUI
-  services.blueman.enable = true;
+  # services.blueman.enable = true;
 
   # Virtual filesystem support for network drives, USB, trash, and sidebar integration
   services.gvfs.enable = true;
