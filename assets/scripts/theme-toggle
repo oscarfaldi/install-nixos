@@ -1,1 +1,11 @@
-theme-toggle
+#!/usr/bin/env bash
+
+set -e
+
+CURRENT=$(cat ~/.cache/current-theme 2>/dev/null || echo graphite)
+
+if [[ "$CURRENT" == "graphite" ]]; then
+    theme-vintage
+else
+    theme-graphite
+fi
