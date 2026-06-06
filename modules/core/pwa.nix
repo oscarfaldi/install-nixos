@@ -69,6 +69,18 @@ in
     })
 
     (mkPWA {
+      name = "Navidrome";
+      url = "http://10.10.10.10:4533/";
+      icon = "/etc/nixos/assets/icons/navidrome.svg";
+    })
+
+    (mkPWA {
+      name = "Obsidian";
+      url = "http://10.10.10.10:3001/";
+      icon = "/etc/nixos/assets/icons/obsidian.svg";
+    })
+
+    (mkPWA {
       name = "Jellyfin";
       url = "http://10.10.10.10:8096";
       icon = "/etc/nixos/assets/icons/jellyfin.svg";
