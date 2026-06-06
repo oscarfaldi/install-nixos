@@ -66,6 +66,7 @@ output "DP-2" {
     mode "2560x1440@164.999" // Set resolution and refresh rate
     scale 1 // No scaling (use 2 for HiDPI)
     position x=0 y=0
+	focus-at-startup
 }
 
 output "DP-3" {
