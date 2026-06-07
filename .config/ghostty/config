@@ -5,7 +5,7 @@ theme = graphite
 # Font
 
 font-family = JetBrainsMono Nerd Font
-font-size = 13
+font-size = 10
 font-thicken = true
 
 # Cursor
