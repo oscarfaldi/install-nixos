@@ -1,3 +1,5 @@
+@import url("./theme.css");
+
 * {
     font-family: "JetBrainsMono Nerd Font";
     font-size: 14px;
@@ -6,25 +8,25 @@
 }
 
 window#waybar {
-    background: rgba(47, 55, 60, 0.8);
-    color: #ffffff;
+    background: @background;
+    color: @foreground;
     opacity: 1;
 }
 
 #custom-logo {
-    color: #ffffff;
+    color: @foreground;
     padding: 0 6px;
     font-weight: bold;
 }
 
 #workspaces button {
-    color: #80919a;
+    color: @muted;
     padding: 0 4px;
     border: none;
 }
 
 #workspaces button.active {
-    color: #ffffff;
+    color: @accent;
 }
 
 #clock {
@@ -51,19 +53,19 @@ window#waybar {
 }
 
 #custom-system-state.pending {
-    color: #f9e2af;
+    color: @warning;
     padding: 0 0;
     font-weight: bold;
 }
 
 #cpu {
-    color: #ffffff;
+    color: @foreground;
     padding: 0 8px;
     font-weight: bold;
 }
 
 #memory {
-    color: #ffffff;
+    color: @foreground;
     padding: 0 8px;
     font-weight: bold;
 }
