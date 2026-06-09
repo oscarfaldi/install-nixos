@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# ============================================================
+# System Upgrade
+# Updates Nix channels, rebuilds and activates the system,
+# then displays package changes and version information.
+# ============================================================
+
 set -e
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
