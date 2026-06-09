@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# ============================================================
+# Wallpaper Rotation Daemon
+# Continuously rotates wallpapers from the active theme
+# and automatically reloads when the theme changes.
+# ============================================================
+
 set -e
 
 STATE="$HOME/.local/state/current-theme"
