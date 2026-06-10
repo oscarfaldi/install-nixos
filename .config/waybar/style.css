@@ -17,6 +17,7 @@ window#waybar {
     color: @foreground;
     padding: 0 6px;
     font-weight: bold;
+    margin-left: 15px;
 }
 
 #workspaces button {
@@ -103,4 +104,5 @@ window#waybar {
     color: @foreground;
     padding: 0 10px;
     font-weight: bold;
+    margin-right: 15px;
 }
