@@ -90,11 +90,15 @@ input {
 	        proportion 0.5
 	        proportion 0.66667
 	    }
-	
+
+        focus-ring {
+            off
+        }
+
 	    border {
-	        width 2
-	        active-color "#7fb39a"
-	        inactive-color "#2c3b35"
+	        width 5
+	        active-color "#635a0f"
+	        inactive-color "#383308"
 	    }
 	
 	    struts {}
