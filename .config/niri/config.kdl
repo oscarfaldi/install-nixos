@@ -226,8 +226,8 @@ output "DP-3" {
     window-rule {
        match app-id="mousepad"
        open-floating true
-       default-column-width { fixed 800; }
-       default-column-height { fixed 600; }
+       default-column-width { fixed 700; }
+       default-window-height { fixed 500; }
     }
 
 // ============================================================
