@@ -22,8 +22,10 @@ window#waybar {
 
 #workspaces button {
     color: @muted;
-    padding: 0 4px;
+    padding: 0 0;
     border: none;
+    margin-left: 10px;
+    min-width: 15px;
 }
 
 #workspaces button.active {
