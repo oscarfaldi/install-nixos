@@ -119,7 +119,7 @@
     swayidle
 
     # ------------------------------------------------------------
-    # File Management
+    # File Management & Documents
     # ------------------------------------------------------------
 
     nautilus
@@ -131,20 +131,21 @@
     p7zip
     unrar
 
-    nfs-utils
-    xdg-user-dirs-gtk
-
-    # ------------------------------------------------------------
-    # Media & Documents
-    # ------------------------------------------------------------
-
-    mpv
-
+    papers
     pdfarranger
 
     onlyoffice-desktopeditors
     # obsidian
     mousepad
+
+    nfs-utils
+    xdg-user-dirs-gtk
+
+    # ------------------------------------------------------------
+    # Media
+    # ------------------------------------------------------------
+
+    mpv
 
     loupe
 
