@@ -11,6 +11,12 @@
   # Enable dconf for GTK applications and settings persistence
   programs.dconf.enable = true;
 
+  # Enable xfconf for saving thunar configuration
+  programs.xfconf.enable = true;
+
+  # Enable thumbnail for thunar
+  services.tumbler.enable = true;
+
   # Virtual filesystem support (USB, trash, network shares, sidebar integration)
   services.gvfs.enable = true;
 
@@ -60,7 +66,7 @@
 
     xdg-utils
     networkmanagerapplet
-    polkit_gnome
+    mate-polkit
 
     # ------------------------------------------------------------
     # Terminal & Development
@@ -122,10 +128,15 @@
     # File Management & Documents
     # ------------------------------------------------------------
 
-    nautilus
+    thunar
+    tumbler
+    thunar-archive-plugin
+    thunar-volman
+    thunar-media-tags-plugin
+    
     yazi
 
-    file-roller
+    xarchiver
 
     unzip
     p7zip
@@ -147,7 +158,7 @@
 
     mpv
 
-    loupe
+    qimgv
 
     ffmpeg
     ffmpegthumbnailer
