@@ -1,34 +1,76 @@
-[Added Associations]
-application/x-zerosize=org.xfce.mousepad.desktop;
-text/plain=org.xfce.mousepad.desktop;
-
-image/jpeg=org.gnome.Loupe.desktop;
-image/png=org.gnome.Loupe.desktop;
-image/webp=org.gnome.Loupe.desktop;
-image/gif=org.gnome.Loupe.desktop;
-image/bmp=org.gnome.Loupe.desktop;
-
-video/mp4=mpv.desktop;
-video/x-matroska=mpv.desktop;
-video/webm=mpv.desktop;
-video/x-msvideo=mpv.desktop;
-video/quicktime=mpv.desktop;
-
-application/pdf=org.gnome.Papers.desktop;
-
 [Default Applications]
+
+# Text
 text/plain=org.xfce.mousepad.desktop
 
-image/jpeg=org.gnome.Loupe.desktop
-image/png=org.gnome.Loupe.desktop
-image/webp=org.gnome.Loupe.desktop
-image/gif=org.gnome.Loupe.desktop
-image/bmp=org.gnome.Loupe.desktop
+# Images
+image/jpeg=qimgv.desktop
+image/png=qimgv.desktop
+image/webp=qimgv.desktop
+image/gif=qimgv.desktop
+image/bmp=qimgv.desktop
+image/tiff=qimgv.desktop
 
+# Modern Image Formats
+image/avif=qimgv.desktop
+image/heif=qimgv.desktop
+image/heic=qimgv.desktop
+image/jxl=qimgv.desktop
+
+# RAW Photos
+image/x-canon-cr2=qimgv.desktop
+image/x-canon-cr3=qimgv.desktop
+image/x-nikon-nef=qimgv.desktop
+image/x-sony-arw=qimgv.desktop
+image/x-panasonic-rw2=qimgv.desktop
+image/x-fuji-raf=qimgv.desktop
+image/x-olympus-orf=qimgv.desktop
+image/x-adobe-dng=qimgv.desktop
+
+# Video
 video/mp4=mpv.desktop
 video/x-matroska=mpv.desktop
 video/webm=mpv.desktop
 video/x-msvideo=mpv.desktop
+video/x-ms-wmv=mpv.desktop
 video/quicktime=mpv.desktop
+video/mpeg=mpv.desktop
+video/mp2t=mpv.desktop
 
+# Audio
+audio/mpeg=mpv.desktop
+audio/flac=mpv.desktop
+audio/x-flac=mpv.desktop
+audio/ogg=mpv.desktop
+audio/x-wav=mpv.desktop
+audio/mp4=mpv.desktop
+audio/aac=mpv.desktop
+
+# PDF
 application/pdf=org.gnome.Papers.desktop
+
+# Microsoft Office
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=onlyoffice-desktopeditors.desktop
+application/msword=onlyoffice-desktopeditors.desktop
+
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=onlyoffice-desktopeditors.desktop
+application/vnd.ms-excel=onlyoffice-desktopeditors.desktop
+
+application/vnd.openxmlformats-officedocument.presentationml.presentation=onlyoffice-desktopeditors.desktop
+application/vnd.ms-powerpoint=onlyoffice-desktopeditors.desktop
+
+# OpenDocument
+application/vnd.oasis.opendocument.text=onlyoffice-desktopeditors.desktop
+application/vnd.oasis.opendocument.spreadsheet=onlyoffice-desktopeditors.desktop
+application/vnd.oasis.opendocument.presentation=onlyoffice-desktopeditors.desktop
+
+# Archives
+application/zip=xarchiver.desktop
+application/x-7z-compressed=xarchiver.desktop
+application/x-rar=xarchiver.desktop
+application/vnd.rar=xarchiver.desktop
+application/x-tar=xarchiver.desktop
+application/gzip=xarchiver.desktop
+application/x-bzip2=xarchiver.desktop
+application/x-xz=xarchiver.desktop
+application/zstd=xarchiver.desktop
