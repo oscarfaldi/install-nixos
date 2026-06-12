@@ -157,6 +157,10 @@
     # ------------------------------------------------------------
 
     mpv
+    celluloid
+    mpvScripts.uosc
+    mpvScripts.thumbfast
+    mpvScripts.builtins.autoload
 
     qimgv
 
