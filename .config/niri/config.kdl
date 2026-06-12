@@ -267,8 +267,8 @@ input {
     window-rule {
        match app-id="xdg-desktop-portal-gtk"
        open-floating true
-       default-column-width { fixed 700; }
-       default-window-height { fixed 500; }
+       default-column-width { fixed 950; }
+       default-window-height { fixed 600; }
     }
 
     window-rule {
