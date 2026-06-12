@@ -265,6 +265,13 @@ input {
     }
 
     window-rule {
+       match app-id="xdg-desktop-portal-gtk"
+       open-floating true
+       default-column-width { fixed 700; }
+       default-window-height { fixed 500; }
+    }
+
+    window-rule {
        match app-id="mousepad"
        open-floating true
        default-column-width { fixed 900; }
