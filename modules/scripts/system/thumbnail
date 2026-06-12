@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+HOT_FOLDERS=(
+  "/mnt/nas/oscarfaldi"
+  "/mnt/nas/mulino"
+  "/mnt/nas/valhalla/Pictures"
+)
+
+generate_flavor() {
+  local flavor="$1"
+
+  find "${HOT_FOLDERS[@]}" \
+    -type f \
+    \( \
+      -iname "*.jpg"  -o \
+      -iname "*.jpeg" -o \
+      -iname "*.png"  -o \
+      -iname "*.webp" -o \
+      -iname "*.avif" -o \
+      -iname "*.gif"  -o \
+      -iname "*.pdf"  -o \
+      -iname "*.mp4"  -o \
+      -iname "*.mkv"  -o \
+      -iname "*.webm" \
+    \) |
+  while read -r file; do
+
+    mime=$(gio info -a standard::content-type "$file" \
+      | awk -F': ' '/standard::content-type/ {print $2}')
+
+    busctl --user call \
+      org.freedesktop.thumbnails.Thumbnailer1 \
+      /org/freedesktop/thumbnails/Thumbnailer1 \
+      org.freedesktop.thumbnails.Thumbnailer1 \
+      Queue \
+      asasssu \
+      1 "file://$file" \
+      1 "$mime" \
+      "$flavor" \
+      background \
+      0 >/dev/null
+
+  done
+}
+
+generate_flavor normal
+generate_flavor large
+generate_flavor x-large
