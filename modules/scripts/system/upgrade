@@ -36,3 +36,5 @@ echo "$(nixos-version)"
 echo
 
 echo "✓ Upgrade complete."
+
+echo "Current" > "$HOME/.cache/update-status"
