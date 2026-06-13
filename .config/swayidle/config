@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# ==============================================================================
+# Rainier Idle Management Script
+# Logic: Monitor Off (1h) -> Lock (2h) -> Suspend (4h)
+# ==============================================================================
+
+# Time Definitions (in seconds)
+IDLE_TIMEOUT_DISPLAY=3600    # 1 Hour
+IDLE_TIMEOUT_LOCK=7200       # 2 Hours
+IDLE_TIMEOUT_SUSPEND=14400    # 4 Hours
+
+# ------------------------------------------------------------------------------
+# 1. Display Power Management
+# ------------------------------------------------------------------------------
+timeout $IDLE_TIMEOUT_DISPLAY 'niri msg action power-off-monitors' \
+    resume 'niri msg action power-on-monitors'
+
+# ------------------------------------------------------------------------------
+# 2. Security & Session Locking
+# ------------------------------------------------------------------------------
+# Lock after 2 hours of inactivity
+timeout $IDLE_TIMEOUT_LOCK 'swaylock -f'
+
+# Ensure session is locked immediately before system sleep/suspend
+before-sleep 'swaylock -f'
+
+# ------------------------------------------------------------------------------
+# 3. System Power State
+# ------------------------------------------------------------------------------
+# Suspend system after 4 hours of inactivity
+timeout $IDLE_TIMEOUT_SUSPEND 'systemctl suspend'
