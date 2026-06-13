@@ -1,0 +1,45 @@
+# ==============================================================================
+# Rainier Lock Screen Configuration
+# A minimal, high-contrast swaylock-effects setup.
+# Focused on clarity, security, and easy maintenance.
+# ==============================================================================
+
+# --- Theme & Color Palette ---
+color_bg="1d2021"
+color_ring="83a598"
+color_text="ebdbb2"
+color_ver="b8bb26"
+color_wrong="fb4934"
+color_alpha="00000000"
+
+# --- Core Behavior ---
+ignore-empty-password
+show-failed-attempts
+indicator-idle-visible
+
+# --- Typography & Aesthetics ---
+# Updated to JetBrains Mono Nerd Font for a sharp, developer-centric look
+font="JetBrainsMono Nerd Font"
+font-size=24
+separator-color=$color_alpha
+line-color=$color_alpha
+
+# --- Default State ---
+inside-color=$color_bg
+ring-color=$color_ring
+text-color=$color_text
+
+# --- Verification State ---
+inside-ver-color=$color_bg
+ring-ver-color=$color_ver
+text-ver-color=$color_text
+
+# --- Error State ---
+inside-wrong-color=$color_bg
+ring-wrong-color=$color_wrong
+text-wrong-color=$color_text
+
+# --- Clock & Date Layout ---
+clock
+timestr=%H:%M
+datestr=%A, %d %B %Y
