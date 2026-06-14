@@ -51,9 +51,10 @@ fi
 if [[ "$1" == "all" ]]; then
     echo "Executing recovery loop for detected paths under /mnt/nas/..."
     echo
+
     for share in "${SHARES[@]}"; do
         target_path="/mnt/nas/$share"
-        # Using timeout to prevent the script from hanging if the network storage is unresponsive
+        # Target the paths directly from the static array without filtering by directory type.
         recover_mount "$target_path"
     done
 
