@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  home.file.".config/assets".source = ../.config/assets;
   home.file.".config/fastfetch".source = ../.config/fastfetch;
   home.file.".config/fuzzel".source = ../.config/fuzzel;
   home.file.".config/ghostty".source = ../.config/ghostty;
@@ -44,10 +45,3 @@
 
   home.file.".config/mimeapps.list".source =
     ../.config/mimeapps.list;
-
-  home.file.".config/user-dirs.dirs".source =
-    ../.config/user-dirs.dirs;
-
-  home.file.".config/user-dirs.locale".source =
-    ../.config/user-dirs.locale;
-}
