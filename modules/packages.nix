@@ -179,8 +179,6 @@
     # System Controls
     # ------------------------------------------------------------
 
-    home-manager
-
     pwvucontrol
 
     brightnessctl
