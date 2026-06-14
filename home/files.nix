@@ -20,6 +20,7 @@
   home.file.".config/tumbler".source = ../.config/tumbler;
 
   home.file.".config/waybar".source = ../.config/waybar;
+  home.file.".config/wallust".source = ../.config/wallust;
   home.file.".config/wlogout".source = ../.config/wlogout;
   home.file.".config/xarchiver".source = ../.config/xarchiver;
 
