@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+# Define the list of all your NAS share names here.
+# Replace or add according to the actual folder names under /mnt/nas/
+SHARES=("academy" "archive" "download" "family" "games" "media" "mulino" "oscarfaldi" "personalbranding" "snapshot" "toolkit" "valhalla")
+
 # Function to handle the recovery process for a specific mount point
 recover_mount() {
     local mount="$1"
@@ -47,11 +51,10 @@ fi
 if [[ "$1" == "all" ]]; then
     echo "Executing recovery loop for detected paths under /mnt/nas/..."
     echo
-    for mount in /mnt/nas/*; do
-        # Check if the path actually exists to avoid running on empty directories
-        if [[ -d "$mount" ]]; then
-            recover_mount "$mount"
-        fi
+    for share in "${SHARES[@]}"; do
+        target_path="/mnt/nas/$share"
+        # Using timeout to prevent the script from hanging if the network storage is unresponsive
+        recover_mount "$target_path"
     done
 
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
