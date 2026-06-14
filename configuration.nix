@@ -13,6 +13,7 @@
       # Modules
       ./modules/audio.nix
       ./modules/appearance.nix
+      ./modules/home.nix
       ./modules/greeter.nix
       ./modules/packages.nix
       ./modules/network.nix
