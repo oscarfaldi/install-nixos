@@ -1,11 +1,6 @@
-/* Color Palette: Dark Gunmetal Grey */
-@define-color background #2a3439;    /* Dark Gunmetal */
-@define-color foreground #ffffff;    /* Pure White */
-@define-color muted      #6b7a82;    /* Muted Slate Grey */
-@define-color accent     #4f94cd;    /* Steel Blue Accent */
-@define-color warning    #d97736;    /* Muted Amber Warning */
+@import url("/home/oscarfaldi/.cache/wallust/waybar.css");
 
-* {
+{
     font-family: "JetBrainsMono Nerd Font";
     font-size: 14px;
     min-height: 35px;
