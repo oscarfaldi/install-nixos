@@ -29,8 +29,12 @@ fi
 
 [ -f "$WALLPAPER" ] || exit 0
 
+wallust run "$WALLPAPER"
+
 awww img "$WALLPAPER" \
     --transition-type grow \
     --transition-duration 1 \
     --transition-fps 60 \
     --transition-step 2
+
+pkill -SIGUSR2 waybar 2>/dev/null || true
