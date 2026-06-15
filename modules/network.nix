@@ -103,80 +103,108 @@
   # NAS Mounts
   # ============================================================
 
-  fileSystems = {
-
-    "/mnt/nas/oscarfaldi" = {
-      device = "10.10.20.10:/mnt/user/oscarfaldi";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
+  let
+    smbOptions = [
+      "credentials=/etc/nixos/secrets/smb-credentials"
+      
+      # SMB
+      "vers=3.1.1"
+  
+      # Ownership
+      "uid=1000"
+      "gid=100"
+  
+      # Permissions
+      "file_mode=0664"
+      "dir_mode=0775"
+  
+      # Systemd automount
+      "x-systemd.automount"
+      "noauto"
+  
+      # Network-aware
+      "_netdev"
+      "nofail"
+  
+      # Fail faster if NAS disappears
+      "x-systemd.mount-timeout=30s"
+    ];
+  in
+  {
+    fileSystems = {
+      "/mnt/nas/oscarfaldi" = {
+        device = "//10.10.20.10/oscarfaldi";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/personalbranding" = {
+        device = "//10.10.20.10/personalbranding";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/mulino" = {
+        device = "//10.10.20.10/mulino";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/academy" = {
+        device = "//10.10.20.10/academy";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/family" = {
+        device = "//10.10.20.10/family";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/media" = {
+        device = "//10.10.20.10/media";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/download" = {
+        device = "//10.10.20.10/download";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/games" = {
+        device = "//10.10.20.10/games";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/toolkit" = {
+        device = "//10.10.20.10/toolkit";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/snapshot" = {
+        device = "//10.10.20.10/snapshot";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/valhalla" = {
+        device = "//10.10.20.10/valhalla";
+        fsType = "cifs";
+        options = smbOptions;
+      };
+  
+      "/mnt/nas/archive" = {
+        device = "//10.10.20.10/archive";
+        fsType = "cifs";
+        options = smbOptions;
+      };
     };
-
-    "/mnt/nas/personalbranding" = {
-      device = "10.10.20.10:/mnt/user/personalbranding";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-
-    "/mnt/nas/mulino" = {
-      device = "10.10.20.10:/mnt/user/mulino";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-
-    "/mnt/nas/academy" = {
-      device = "10.10.20.10:/mnt/user/academy";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-
-    "/mnt/nas/family" = {
-      device = "10.10.20.10:/mnt/user/family";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-
-    "/mnt/nas/media" = {
-      device = "10.10.20.10:/mnt/user/media";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-
-    "/mnt/nas/download" = {
-      device = "10.10.20.10:/mnt/user/download";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-
-    "/mnt/nas/games" = {
-      device = "10.10.20.10:/mnt/user/games";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-
-    "/mnt/nas/toolkit" = {
-      device = "10.10.20.10:/mnt/user/toolkit";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-
-    "/mnt/nas/snapshot" = {
-      device = "10.10.20.10:/mnt/user/snapshot";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-
-    "/mnt/nas/valhalla" = {
-      device = "10.10.20.10:/mnt/user/valhalla";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-
-    "/mnt/nas/archive" = {
-      device = "10.10.20.10:/mnt/user/archive";
-      fsType = "nfs";
-      options = [ "noauto" "nofail" "_netdev" "x-systemd.automount" ];
-    };
-  };
+  }
 
   # ============================================================
   # NetworkManager Profile Cleanup
