@@ -25,9 +25,6 @@
   home.file.".config/wlogout".source = ../.config/wlogout;
   home.file.".config/xarchiver".source = ../.config/xarchiver;
 
-  home.file.".config/xdg-desktop-portal".source =
-    ../.config/xdg-desktop-portal;
-
   home.file.".config/xfconf".source =
     ../.config/xfconf;
 
