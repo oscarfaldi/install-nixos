@@ -183,7 +183,7 @@ input {
         spawn-at-startup "swayidle"
         spawn-at-startup "awww-daemon"
         spawn-at-startup "wallpaperd"
-        spawn-at-startup "waybar"
+        spawn-sh-at-startup "waybar > ~/.cache/waybar.log 2>&1"
         spawn-at-startup "mako"
 	
 	// Applications
