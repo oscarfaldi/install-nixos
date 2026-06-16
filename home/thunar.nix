@@ -1,48 +1,34 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.activation.thunarSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    XFCONF="${pkgs.xfconf}/bin/xfconf-query"
+  home.packages = with pkgs; [
+    xfce.thunar
+  ];
 
-    # View
-    $XFCONF -c thunar -p /last-view -s ThunarDetailsView || true
-
-    # Zoom
-    $XFCONF -c thunar -p /last-icon-view-zoom-level -s THUNAR_ZOOM_LEVEL_50_PERCENT || true
-    $XFCONF -c thunar -p /last-details-view-zoom-level -s THUNAR_ZOOM_LEVEL_38_PERCENT || true
-
-    # Hidden files
-    $XFCONF -c thunar -p /last-show-hidden -s true || true
-
-    # Thumbnails
-    $XFCONF -c thunar -p /misc-thumbnail-mode -s THUNAR_THUMBNAIL_MODE_ALWAYS || true
-
-    # Date formatting
-    $XFCONF -c thunar -p /misc-date-style -s THUNAR_DATE_STYLE_LONG || true
-
-    # Single click
-    $XFCONF -c thunar -p /misc-single-click -s false || true
-
-    # Folder specific settings
-    $XFCONF -c thunar -p /misc-directory-specific-settings -s true || true
-
-    # Image preview
-    $XFCONF -c thunar -p /misc-image-preview-mode -s THUNAR_IMAGE_PREVIEW_MODE_EMBEDDED || true
-
-    # Sidebar
-    $XFCONF -c thunar -p /shortcuts-icon-size -s THUNAR_ICON_SIZE_24 || true
-    $XFCONF -c thunar -p /tree-icon-size -s THUNAR_ICON_SIZE_16 || true
-    $XFCONF -c thunar -p /shortcuts-icon-emblems -s true || true
-    $XFCONF -c thunar -p /misc-symbolic-icons-in-sidepane -s false || true
-
-    # Tabs
-    $XFCONF -c thunar -p /misc-middle-click-in-tab -s false || true
-    $XFCONF -c thunar -p /misc-open-new-window-as-tab -s false || true
-
-    # Transfers
-    $XFCONF -c thunar -p /misc-transfer-use-partial -s THUNAR_USE_PARTIAL_MODE_NEVER || true
-
-    # Location bar
-    $XFCONF -c thunar -p /last-location-bar -s ThunarLocationButtons || true
-  '';
+  # Menggunakan skema deklaratif XML dengan opsi force agar tidak dioverwrite xfconfd
+  home.file.".config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml" = {
+    text = ''
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="thunar" version="1.0">
+        <property name="last-view" type="string" value="ThunarDetailsView"/>
+        <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_50_PERCENT"/>
+        <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
+        <property name="last-show-hidden" type="bool" value="true"/>
+        <property name="last-location-bar" type="string" value="ThunarLocationButtons"/>
+        <property name="shortcuts-icon-size" type="string" value="THUNAR_ICON_SIZE_24"/>
+        <property name="tree-icon-size" type="string" value="THUNAR_ICON_SIZE_16"/>
+        <property name="shortcuts-icon-emblems" type="bool" value="true"/>
+        <property name="misc-thumbnail-mode" type="string" value="THUNAR_THUMBNAIL_MODE_ALWAYS"/>
+        <property name="misc-date-style" type="string" value="THUNAR_DATE_STYLE_LONG"/>
+        <property name="misc-single-click" type="bool" value="false"/>
+        <property name="misc-directory-specific-settings" type="bool" value="true"/>
+        <property name="misc-image-preview-mode" type="string" value="THUNAR_IMAGE_PREVIEW_MODE_EMBEDDED"/>
+        <property name="misc-symbolic-icons-in-sidepane" type="bool" value="false"/>
+        <property name="misc-middle-click-in-tab" type="bool" value="false"/>
+        <property name="misc-open-new-window-as-tab" type="bool" value="false"/>
+        <property name="misc-transfer-use-partial" type="string" value="THUNAR_USE_PARTIAL_MODE_NEVER"/>
+      </channel>
+    '';
+    force = true; 
+  };
 }
