@@ -90,6 +90,11 @@ fuzzel = {
     target = "~/.config/fuzzel/colors.ini"
 }
 
+mako = {
+    template = "mako-colors.conf",
+    target = "~/.config/mako/colors.conf"
+}
+
 [hooks]
 # Shell commands run after every palette generation, skip all with --no-hooks
 # Examples:
