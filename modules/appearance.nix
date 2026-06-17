@@ -82,6 +82,7 @@
     glib
 
     graphite-gtk-theme
+    nordic
     gruvbox-gtk-theme
 
     # ----------------------------------------------------------
