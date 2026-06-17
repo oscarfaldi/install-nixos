@@ -27,37 +27,6 @@ echo "✓ Unstable channel and home manager enabled."
 echo
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo " SMB Credentials Setup"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo
-
-# Check and configure SMB credentials if not present
-if [[ ! -f /etc/nixos/secrets/smb-credentials ]]; then
-    echo "SMB credential file not found."
-    echo
-    
-    read -rp "SMB Username: " SMB_USER
-    read -rsp "SMB Password: " SMB_PASS
-    echo
-
-    sudo mkdir -p /etc/nixos/secrets
-
-    sudo tee /etc/nixos/secrets/smb-credentials >/dev/null <<EOF
-username=${SMB_USER}
-password=${SMB_PASS}
-EOF
-
-    sudo chmod 600 /etc/nixos/secrets/smb-credentials
-
-    echo
-    echo "✓ SMB credentials saved."
-    echo
-else
-    echo "✓ Existing SMB credentials found."
-    echo
-fi
-
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo " Rebuilding Rainier system..."
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo
@@ -72,16 +41,6 @@ echo
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo " Final Step"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo
-echo "After reboot run:"
-echo
-echo "bootstrap"
-echo
-echo "Bootstrap will install:"
-echo "  • Dotfiles"
-echo "  • Scripts"
-echo "  • Themes"
-echo "  • User configuration"
 echo
 echo "Rebooting in 10 seconds..."
 echo
