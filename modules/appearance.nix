@@ -1,21 +1,26 @@
 { config, pkgs, ... }:
 
 {
-
   # ============================================================
   # Fonts Configuration
   # ============================================================
 
   fonts = {
-
     packages = with pkgs; [
 
       # ----------------------------------------------------------
-      # Nerd Fonts
+      # Microsoft Standard Fonts (Windows Defaults)
       # ----------------------------------------------------------
 
-      nerd-fonts.iosevka-term-slab
-      nerd-fonts.jetbrains-mono
+      corefonts           # Arial, Times New Roman, Courier New, Verdana
+      vistafonts          # Calibri, Cambria, Consolas, Segoe UI
+      liberation_ttf      # Open-source exact metric fallbacks for MS Fonts
+
+      # ----------------------------------------------------------
+      # Nerd Fonts (Unstable Syntax Compatibility)
+      # ----------------------------------------------------------
+
+      nerdfonts           # Pulls from the updated unstable structure
 
       # ----------------------------------------------------------
       # Monospace
@@ -44,21 +49,28 @@
       enable = true;
 
       defaultFonts = {
-
         monospace = [
           "IosevkaTermSlab Nerd Font"
           "JetBrains Mono"
           "BlexMono Nerd Font"
+          "Consolas"
+          "Liberation Mono"
         ];
 
         sansSerif = [
           "Inter"
+          "Arial"
+          "Calibri"
           "IBM Plex Sans"
+          "Liberation Sans"
           "Noto Sans"
         ];
 
         serif = [
+          "Times New Roman"
+          "Cambria"
           "IBM Plex Serif"
+          "Liberation Serif"
           "Noto Serif"
         ];
 
@@ -80,7 +92,6 @@
     # ----------------------------------------------------------
 
     glib
-
     graphite-gtk-theme
     nordic
     gruvbox-gtk-theme
@@ -91,7 +102,6 @@
 
     papirus-icon-theme
     papirus-folders
-
     gruvbox-plus-icons
 
     # ----------------------------------------------------------
