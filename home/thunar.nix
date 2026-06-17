@@ -14,7 +14,7 @@
         <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_50_PERCENT"/>
         <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
         <property name="last-show-hidden" type="bool" value="true"/>
-        <property name="last-location-bar" type="string" value="ThunarLocationButtons"/>
+        <property name="last-location-bar" type="string" value="THUNAR_LOCATION_BAR_PATHBAR"/>
         
         <!-- Sidebar & Window Geometry -->
         <property name="last-separator-position" type="int" value="200"/>
@@ -33,7 +33,7 @@
         
         <!-- Fix The Gap: Force tight column spacing instead of stretching across the screen -->
         <property name="last-details-view-fixed-columns" type="bool" value="true"/>
-        <property name="last-details-view-column-widths" type="string" value="250,180,100,120"/>
+        <property name="last-details-view-column-widths" type="string" value="250,180,260,120,50,50,50,50,360,50,50,90,50,750"/>
 
         <!-- Behavior & Tweaks -->
         <property name="misc-thumbnail-mode" type="string" value="THUNAR_THUMBNAIL_MODE_ALWAYS"/>
