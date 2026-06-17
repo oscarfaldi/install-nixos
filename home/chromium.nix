@@ -6,10 +6,9 @@
 
     extensions = [
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
-      { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # uBlock Origin Lite
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin (Standard)
       { id = "ldgfbffkinooeloadekpmfoklnobpien"; } # Raindrop.io
       { id = "olenolhfominlkfmlkolcahemogebpcj"; } # Fast Save and Repost for Instagram
-      { id = "abjcfabbhafbcdfjoecdgepllmpfceif"; } # Magic Actions for YouTube
     ];
 
     commandLineArgs = [
@@ -19,15 +18,19 @@
 
       # Wayland
       "--ozone-platform=wayland"
+      "--enable-wayland-ime"
 
       # Session
       "--restore-last-session"
 
-      # Hardware acceleration
+      # Hardware Acceleration & Rendering
       "--enable-features=VaapiVideoDecoder"
       "--ignore-gpu-blocklist"
       "--enable-zero-copy"
       "--enable-gpu-rasterization"
+      "--enable-hardware-overlays"
+      "--enable-native-gpu-memory-buffers"
+      "--num-raster-threads=4" # Adjust based on your actual CPU core count
     ];
   };
 }
