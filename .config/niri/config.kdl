@@ -187,7 +187,7 @@ input {
         spawn-at-startup "waybar"
         spawn-at-startup "awww-daemon"
         spawn-at-startup "wallpaperd"
-        spawn-at-startup "theme"
+        spawn-at-startup "theme-nordic"
         spawn-at-startup "mako"
 	
 	// Applications
