@@ -32,6 +32,14 @@
   # Privilege escalation framework
   security.polkit.enable = true;
 
+  # Provide pkexec wrapper required by GParted and other Polkit apps
+  security.wrappers.pkexec = {
+    source = "${pkgs.polkit}/bin/pkexec";
+    owner = "root";
+    group = "root";
+    setuid = true;
+  };
+
   # ZSH enable
   programs.zsh.enable = true;
 
