@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   # ============================================================
@@ -9,6 +9,8 @@
     enable = true;
 
     theme.name = "Graphite-Dark";
+
+    gtk4.theme = config.gtk.theme;
 
     iconTheme.name = "Papirus-Dark";
 
