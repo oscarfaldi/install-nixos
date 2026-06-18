@@ -1,46 +1,72 @@
 #!/usr/bin/env bash
 
+# ==============================================================================
+# CONFIGURATION & VARIABLES
+# ==============================================================================
 NAS="10.10.20.10"
 
 shares=(
-  academy
-  archive
-  download
-  family
-  games
-  media
-  mulino
-  oscarfaldi
-  personalbranding
-  snapshot
-  toolkit
-  valhalla
+    academy
+    archive
+    download
+    family
+    games
+    media
+    mulino
+    oscarfaldi
+    personalbranding
+    snapshot
+    toolkit
+    valhalla
 )
 
-# ------------------------------------------------------------
-# NAS unavailable → silent exit
-# ------------------------------------------------------------
+# ==============================================================================
+# NOTIFICATION FUNCTION
+# ==============================================================================
+notify() {
+    notify-send \
+        -u critical \
+        -i network-server \
+        "$1" \
+        "$2"
+}
 
+# ==============================================================================
+# NAS REACHABILITY CHECK
+# ==============================================================================
 if ! timeout 2 ping -c 1 "$NAS" >/dev/null 2>&1; then
-    exit 0
+    notify \
+        "NAS Offline" \
+        "Cannot reach $NAS. Check power, network connection, or IP address."
+    exit 1
 fi
 
-# ------------------------------------------------------------
-# SMB unavailable → silent exit
-# ------------------------------------------------------------
-
+# ==============================================================================
+# SMB SERVICE CHECK
+# ==============================================================================
 if ! timeout 2 nc -z "$NAS" 445 >/dev/null 2>&1; then
-    exit 0
+    notify \
+        "SMB Service Unavailable" \
+        "Server is reachable, but SMB (port 445) is not responding."
+    exit 1
 fi
 
-# ------------------------------------------------------------
-# Mount expected shares
-# ------------------------------------------------------------
+# ==============================================================================
+# AUTHENTICATION CHECK
+# ==============================================================================
+if ! timeout 10 gio list "smb://$NAS" >/dev/null 2>&1; then
+    notify \
+        "SMB Authentication Required" \
+        "Open Thunar and sign in once to save SMB credentials."
+    exit 1
+fi
 
+# ==============================================================================
+# MOUNT EXPECTED SHARES
+# ==============================================================================
 failed=()
 
 for share in "${shares[@]}"; do
-
     if gio mount -l | grep -q "smb://$NAS/$share/"; then
         continue
     fi
@@ -48,31 +74,27 @@ for share in "${shares[@]}"; do
     if ! timeout 10 gio mount "smb://$NAS/$share" >/dev/null 2>&1; then
         failed+=("$share")
     fi
-
 done
 
-# ------------------------------------------------------------
-# Notification
-# ------------------------------------------------------------
+# ==============================================================================
+# VERIFY MOUNT OUTCOMES
+# ==============================================================================
 
+# Case 1: All Shares Mounted Successfully
 if [ ${#failed[@]} -eq 0 ]; then
     exit 0
 fi
 
+# Case 2: Total Failure (No Configured Shares Could Be Mounted)
 if [ ${#failed[@]} -eq ${#shares[@]} ]; then
-
-    notify-send \
-      -u critical \
-      -i network-server \
-      "NAS Mount Failed" \
-      "All SMB shares failed to mount."
-
-else
-
-    notify-send \
-      -u critical \
-      -i network-server \
-      "NAS Mount Failed" \
-      "Failed shares: ${failed[*]}"
-
+    notify \
+        "NAS Shares Unavailable" \
+        "Connected successfully, but none of the configured SMB shares could be mounted."
+    exit 1
 fi
+
+# Case 3: Partial Share Failure
+notify \
+    "Some NAS Shares Unavailable" \
+    "Failed shares: ${failed[*]}"
+exit 1
