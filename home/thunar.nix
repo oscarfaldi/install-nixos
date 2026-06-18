@@ -10,11 +10,11 @@
     text = ''
       <?xml version="1.0" encoding="UTF-8"?>
       <channel name="thunar" version="1.0">
-        <property name="last-view" type="string" value="ThunarLocationButtons"/>
         <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_50_PERCENT"/>
         <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
         <property name="last-show-hidden" type="bool" value="true"/>
-        <property name="last-location-bar" type="string" value="THUNAR_LOCATION_BAR_PATHBAR"/>
+        <property name="last-view" type="string" value="ThunarDetailsView"/>
+        <property name="last-location-bar" type="string" value="ThunarLocationButtons"/>
         
         <!-- Sidebar & Window Geometry -->
         <property name="last-separator-position" type="int" value="250"/>
