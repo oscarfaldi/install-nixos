@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+for input in "$@"; do
+    output="${input%.*}.mkv"
+
+    ffmpeg \
+        -hide_banner \
+        -loglevel warning \
+        -i "$input" \
+        -map 0 \
+        -c copy \
+        "$output"
+done
+
+notify-send "Remux to MKV Complete"
