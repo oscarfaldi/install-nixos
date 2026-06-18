@@ -10,14 +10,14 @@
     text = ''
       <?xml version="1.0" encoding="UTF-8"?>
       <channel name="thunar" version="1.0">
-        <property name="last-view" type="string" value="ThunarDetailsView"/>
+        <property name="last-view" type="string" value="ThunarLocationButtons"/>
         <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_50_PERCENT"/>
         <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
         <property name="last-show-hidden" type="bool" value="true"/>
         <property name="last-location-bar" type="string" value="THUNAR_LOCATION_BAR_PATHBAR"/>
         
         <!-- Sidebar & Window Geometry -->
-        <property name="last-separator-position" type="int" value="200"/>
+        <property name="last-separator-position" type="int" value="250"/>
         <property name="shortcuts-icon-size" type="string" value="THUNAR_ICON_SIZE_24"/>
         <property name="tree-icon-size" type="string" value="THUNAR_ICON_SIZE_16"/>
         <property name="shortcuts-icon-emblems" type="bool" value="true"/>
@@ -33,11 +33,11 @@
         
         <!-- Fix The Gap: Force tight column spacing instead of stretching across the screen -->
         <property name="last-details-view-fixed-columns" type="bool" value="true"/>
-        <property name="last-details-view-column-widths" type="string" value="250,180,260,120,50,50,50,50,360,50,50,90,50,750"/>
+        <property name="last-details-view-column-widths" type="string" value="250,180,300,120,50,50,50,50,380,50,50,100,50,750"/>
 
         <!-- Behavior & Tweaks -->
         <property name="misc-thumbnail-mode" type="string" value="THUNAR_THUMBNAIL_MODE_ALWAYS"/>
-        <property name="misc-date-style" type="string" value="THUNAR_DATE_STYLE_LONG"/>
+        <property name="misc-date-style" type="string" value="THUNAR_DATE_STYLE_CUSTOM"/>
         <property name="misc-single-click" type="bool" value="false"/>
         <property name="misc-directory-specific-settings" type="bool" value="true"/>
         <property name="misc-image-preview-mode" type="string" value="THUNAR_IMAGE_PREVIEW_MODE_EMBEDDED"/>
@@ -45,6 +45,7 @@
         <property name="misc-middle-click-in-tab" type="bool" value="false"/>
         <property name="misc-open-new-window-as-tab" type="bool" value="false"/>
         <property name="misc-transfer-use-partial" type="string" value="THUNAR_USE_PARTIAL_MODE_NEVER"/>
+        <property name="misc-date-custom-style" type="string" value="%d %b %Y | %H:%M:%S"/>
       </channel>
     '';
     force = true; 
