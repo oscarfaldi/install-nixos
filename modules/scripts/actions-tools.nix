@@ -15,6 +15,6 @@ in
 
   environment.systemPackages = [
     (mkScript "screenshot")
-    (mkScript "remux-mkv")
+    (mkScript "rename-ts-to-mts")
   ];
 }
