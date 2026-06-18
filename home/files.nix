@@ -6,7 +6,7 @@
   home.file.".config/fuzzel".source = ../.config/fuzzel;
   home.file.".config/ghostty".source = ../.config/ghostty;
 
-  home.file.".config/gtk-3.0".source = ../.config/gtk-3.0;
+  home.file.".config/gtk-3.0/bookmarks".source = ../.config/gtk-3.0/bookmarks;
 
   home.file.".config/mako".source = ../.config/mako;
   home.file.".config/mpv".source = ../.config/mpv;
