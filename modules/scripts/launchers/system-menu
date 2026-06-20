@@ -21,4 +21,7 @@ case "$choice" in
     "NAS Recover")
         ghostty -e nas-recover all
         ;;
+    "NixOS Version")
+        ghostty -e version
+        ;;
 esac
