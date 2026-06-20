@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=System
+Comment=System power menu
+Exec=menu
+Icon=/home/oscarfaldi/System/.config/wlogout/icons/shutdown.png
+Terminal=false
+Categories=System;
+Keywords=shutdown;reboot;suspend;logout;
