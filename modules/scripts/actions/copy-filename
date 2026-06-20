@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+basename "$1" | wl-copy
+
+notify-send 
+-i edit-copy 
+"Clipboard" 
+"Filename copied."
