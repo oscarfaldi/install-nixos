@@ -1,160 +1,216 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <actions>
 
   <!-- ========================================== -->
   <!-- 1. CORE SYSTEM ACTIONS                     -->
   <!-- ========================================== -->
+
   <action>
     <icon>utilities-terminal</icon>
     <name>Open Terminal Here</name>
+    <submenu/>
     <unique-id>1781935446753343-101</unique-id>
     <command>exo-open --working-directory %f --launch TerminalEmulator</command>
     <description>Open terminal in current folder</description>
+    <range></range>
     <patterns>*</patterns>
+    <startup-notify/>
     <directories/>
   </action>
 
   <action>
     <icon>system-file-manager</icon>
     <name>Open Here as Root</name>
+    <submenu/>
     <unique-id>1781935446753343-102</unique-id>
     <command>open-as-root %f</command>
     <description>Open current location with administrator privileges</description>
+    <range>*</range>
     <patterns>*</patterns>
     <directories/>
+    <audio-files/>
+    <image-files/>
+    <other-files/>
+    <text-files/>
+    <video-files/>
   </action>
 
   <!-- ========================================== -->
   <!-- 2. CLIPBOARD & PATH MANAGEMENT             -->
   <!-- ========================================== -->
+
   <action>
     <icon>edit-copy</icon>
     <name>Copy Full Path</name>
+    <submenu/>
     <unique-id>1781935446753343-201</unique-id>
     <command>copy-full-path %f</command>
     <description>Copy full file path</description>
+    <range>*</range>
     <patterns>*</patterns>
-    <files/>
+    <audio-files/>
+    <image-files/>
+    <other-files/>
+    <text-files/>
+    <video-files/>
   </action>
-  
+
   <action>
     <icon>edit-copy</icon>
     <name>Copy Filename</name>
+    <submenu/>
     <unique-id>1781935446753343-202</unique-id>
     <command>copy-filename %f</command>
     <description>Copy filename</description>
+    <range>*</range>
     <patterns>*</patterns>
-    <files/>
+    <audio-files/>
+    <image-files/>
+    <other-files/>
+    <text-files/>
+    <video-files/>
   </action>
-  
+
   <action>
     <icon>edit-copy</icon>
     <name>Copy Filename Without Extension</name>
+    <submenu/>
     <unique-id>1781935446753343-203</unique-id>
     <command>copy-filename-no-extension %f</command>
     <description>Copy filename without extension</description>
+    <range>*</range>
     <patterns>*</patterns>
-    <files/>
+    <audio-files/>
+    <image-files/>
+    <other-files/>
+    <text-files/>
+    <video-files/>
   </action>
 
   <!-- ========================================== -->
   <!-- 3. DOCUMENT & ARCHIVE UTILITIES            -->
   <!-- ========================================== -->
+
   <action>
     <icon>application-pdf</icon>
     <name>Convert to PDF</name>
+    <submenu/>
     <unique-id>1781935446753343-301</unique-id>
     <command>convert-to-pdf %f</command>
     <description>Convert document, spreadsheet, or presentation to PDF</description>
+    <range>*</range>
     <patterns>*.doc;*.docx;*.odt;*.rtf;*.ppt;*.pptx;*.odp;*.xls;*.xlsx;*.ods</patterns>
-    <files/>
+    <other-files/>
+    <text-files/>
   </action>
 
   <action>
     <icon>package-x-generic</icon>
     <name>Compress to ZIP</name>
+    <submenu/>
     <unique-id>1781935446753343-302</unique-id>
     <command>compress-to-zip %F</command>
     <description>Create ZIP archive from selected files</description>
+    <range>*</range>
     <patterns>*</patterns>
-    <files/>
+    <directories/>
+    <audio-files/>
+    <image-files/>
+    <other-files/>
+    <text-files/>
+    <video-files/>
   </action>
-  
+
   <action>
     <icon>package-x-generic</icon>
     <name>Extract Archive Here</name>
+    <submenu/>
     <unique-id>1781935446753343-303</unique-id>
     <command>extract-here %f</command>
     <description>Extract archive contents into current folder</description>
-    <patterns>*.zip;*.7z;*.rar</patterns>
-    <files/>
+    <range>*</range>
+    <patterns>*.zip;*.7z;*.rar;*.tar;*.tar.gz;*.tgz;*.tar.xz</patterns>
+    <other-files/>
   </action>
 
   <!-- ========================================== -->
   <!-- 4. IMAGE PROCESSING                        -->
   <!-- ========================================== -->
+
   <action>
     <icon>image-x-generic</icon>
     <name>Convert to AVIF</name>
+    <submenu/>
     <unique-id>1781935446753343-401</unique-id>
     <command>convert-to-avif %F</command>
     <description>Convert image to AVIF</description>
+    <range>*</range>
     <patterns>*.jpg;*.jpeg;*.png;*.gif;*.webp;*.bmp;*.tif;*.tiff</patterns>
-    <files/>
+    <image-files/>
   </action>
-  
+
   <action>
     <icon>object-rotate-right</icon>
     <name>Rotate Image Right</name>
+    <submenu/>
     <unique-id>1781935446753343-402</unique-id>
     <command>rotate-image-right %f</command>
     <description>Rotate image 90° clockwise</description>
+    <range>*</range>
     <patterns>*.jpg;*.jpeg;*.png;*.gif;*.webp;*.avif;*.bmp;*.tif;*.tiff</patterns>
-    <files/>
+    <image-files/>
   </action>
 
   <action>
     <icon>object-rotate-left</icon>
     <name>Rotate Image Left</name>
+    <submenu/>
     <unique-id>1781935446753343-403</unique-id>
     <command>rotate-image-left %f</command>
     <description>Rotate image 90° counter-clockwise</description>
+    <range>*</range>
     <patterns>*.jpg;*.jpeg;*.png;*.gif;*.webp;*.avif;*.bmp;*.tif;*.tiff</patterns>
-    <files/>
+    <image-files/>
   </action>
 
   <!-- ========================================== -->
   <!-- 5. VIDEO PROCESSING                        -->
   <!-- ========================================== -->
+
   <action>
     <icon>object-rotate-right</icon>
     <name>Rotate Video Right</name>
+    <submenu/>
     <unique-id>1781935446753343-501</unique-id>
     <command>rotate-video-right %f</command>
     <description>Rotate video 90° clockwise</description>
+    <range>*</range>
     <patterns>*.mp4;*.mov;*.mkv;*.webm;*.mts;*.m2ts;*.ts</patterns>
-    <files/>
+    <video-files/>
   </action>
 
   <action>
     <icon>object-rotate-left</icon>
+    <submenu/>
     <name>Rotate Video Left</name>
     <unique-id>1781935446753343-502</unique-id>
     <command>rotate-video-left %f</command>
     <description>Rotate video 90° counter-clockwise</description>
+    <range>*</range>
     <patterns>*.mp4;*.mov;*.mkv;*.webm;*.mts;*.m2ts;*.ts</patterns>
-    <files/>
+    <video-files/>
   </action>
 
   <action>
     <icon>video-x-generic</icon>
     <name>Rename TS → MTS</name>
+    <submenu/>
     <unique-id>1781935446753343-503</unique-id>
     <command>rename-ts-to-mts %F</command>
     <description>Rename TS files for better thumbnail and MIME support</description>
+    <range>*</range>
     <patterns>*.ts</patterns>
-    <files/>
+    <video-files/>
   </action>
 
 </actions>
