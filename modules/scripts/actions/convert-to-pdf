@@ -2,7 +2,7 @@
 
 # ==============================================================================
 # Script Name: PDF Converter
-# Description: Converts images to PDF
+# Description: Converts images and Text to PDF
 # ==============================================================================
 
 set -euo pipefail
@@ -20,6 +20,7 @@ for FILE in "$@"; do
 
             pandoc \
                 "$FILE" \
+                --pdf-engine=tectonic \
                 -o "$OUTPUT"
             ;;
 
