@@ -2,16 +2,40 @@
 
 set -euo pipefail
 
+# 1. Determine the base directory from the first selected item
 FIRST="$1"
-
 DIR="$(dirname "$FIRST")"
 TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
 
-OUTPUT="$DIR/archive-$TIMESTAMP.zip"
+# 2. Adaptive Naming: Use the first item's name if only one item is selected
+if [ "$#" -eq 1 ]; then
+    BASE_NAME=$(basename "$FIRST")
+    # Strip extension if it's a file, keep it if it's a directory
+    if [ -f "$FIRST" ]; then
+        BASE_NAME="${BASE_NAME%.*}"
+    fi
+else
+    # Fallback name if multiple items are selected (uses the parent folder name)
+    BASE_NAME=$(basename "$DIR")
+fi
 
-zip -r "$OUTPUT" "$@" >/dev/null
+OUTPUT_NAME="${BASE_NAME}-${TIMESTAMP}.zip"
+OUTPUT_PATH="$DIR/$OUTPUT_NAME"
 
-notify-send 
--i package-x-generic 
-"ZIP Archive" 
-"Archive created successfully."
+# 3. Transform absolute paths to relative paths for clean internal zip structure
+# We collect the basenames of all selected files
+RELATIVE_TARGETS=()
+for ARG in "$@"; do
+    RELATIVE_TARGETS+=("$(basename "$ARG")")
+done
+
+# 4. Change directory to the source folder before compressing
+cd "$DIR"
+
+# Execute compression using the relative paths
+zip -r "$OUTPUT_PATH" "${RELATIVE_TARGETS[@]}" >/dev/null
+
+notify-send \
+    -i package-x-generic \
+    "ZIP Archive" \
+    "Successfully created: $OUTPUT_NAME"
