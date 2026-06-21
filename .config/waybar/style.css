@@ -19,6 +19,19 @@ window#waybar {
     opacity: 1;
 }
 
+/* --- Tooltips --- */
+tooltip {
+    background: #242933;
+    border: 1px solid #5e81ac;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: #bbc3d4;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+}
+
 /* --- Left Modules --- */
 #custom-logo {
     color: @foreground;
