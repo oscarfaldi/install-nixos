@@ -89,6 +89,23 @@
   </action>
 
   <action>
+    <icon>folder-remote</icon>
+    <name>Move to NAS Staging</name>
+    <submenu>NAS</submenu>
+    <unique-id>1782052090035038-901</unique-id>
+    <command>move-to-nas-staging %F</command>
+    <description>Move selected media files to NAS staging area</description>
+    <range>*</range>
+    <patterns>
+        *.jpg;*.jpeg;*.png;*.webp;*.gif;
+        *.mp4;*.mov;*.mkv;*.webm;
+        *.mts;*.m2ts;*.ts
+    </patterns>
+    <image-files/>
+    <video-files/>
+  </action>
+  
+  <action>
     <icon>package-x-generic</icon>
     <name>Compress to ZIP</name>
     <submenu/>
