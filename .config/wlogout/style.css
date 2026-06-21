@@ -35,25 +35,25 @@ button:hover {
 
 /* --- Icon Mappings --- */
 #lock {
-    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/lock.png"));
+    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/lock.svg"));
 }
 
 #logout {
-    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/logout.png"));
+    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/logout.svg"));
 }
 
 #suspend {
-    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/suspend.png"));
+    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/suspend.svg"));
 }
 
 #hibernate {
-    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/hibernate.png"));
+    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/hibernate.svg"));
 }
 
 #shutdown {
-    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/shutdown.png"));
+    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/shutdown.svg"));
 }
 
 #reboot {
-    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/reboot.png"));
+    background-image: image(url("/home/oscarfaldi/.config/wlogout/icons/reboot.svg"));
 }
