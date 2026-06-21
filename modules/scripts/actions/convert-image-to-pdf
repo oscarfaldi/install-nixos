@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# ==============================================================================
+# Script Name: PDF Converter
+# Description: Converts images to PDF
+# ==============================================================================
+
+set -euo pipefail
+
+for FILE in "$@"; do
+
+    EXT="${FILE##*.}"
+    EXT="$(echo "$EXT" | tr '[:upper:]' '[:lower:]')"
+
+    OUTPUT="${FILE%.*}.pdf"
+
+    case "$EXT" in
+
+        md|txt)
+
+            pandoc \
+                "$FILE" \
+                -o "$OUTPUT"
+            ;;
+
+        jpg|jpeg|png|tif|tiff)
+
+            img2pdf \
+                "$FILE" \
+                -o "$OUTPUT"
+            ;;
+
+        *)
+
+            notify-send \
+                -i dialog-error \
+                "Convert to PDF" \
+                "Unsupported format: $FILE"
+
+            continue
+            ;;
+    esac
+
+done
+
+notify-send \
+    -i application-pdf \
+    "Convert to PDF" \
+    "Conversion complete."
