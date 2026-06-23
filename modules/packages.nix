@@ -201,12 +201,13 @@
     brightnessctl
     playerctl
 
-    gnome-calculator
+    qalculate-gtk
 
     wlogout
 
     gparted
     ntfs3g
+    exfatprogs
     parabolic
 
     # ------------------------------------------------------------
