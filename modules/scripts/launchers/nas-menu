@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+choice=$(
+printf "Archive Home Folder to NAS\nNAS Recover\nNAS Debug" |
+fuzzel --dmenu -p "NAS"
+)
+
+case "$choice" in
+    "Archive Home Folder to NAS")
+        ghostty -e archive-home-folder-to-nas
+        ;;
+    "NAS Recover")
+        ghostty -e nas-recover all
+        ;;
+    "NAS Debug")
+        ghostty -e nas-debug
+        ;;
+esac
