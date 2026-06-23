@@ -104,6 +104,17 @@
     <image-files/>
     <video-files/>
   </action>
+
+  <action>
+    <icon>folder-remote</icon>
+    <name>Archive Home Folders to NAS</name>
+    <submenu>NAS</submenu>
+    <unique-id>1782052090035038-901</unique-id>
+    <command>archive-home-folders</command>
+    <description>Archive Downloads, Documents, Pictures, Music and Videos to NAS</description>
+    <patterns>*</patterns>
+    <directories/>
+  </action>
   
   <action>
     <icon>package-x-generic</icon>
