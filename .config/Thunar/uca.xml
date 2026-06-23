@@ -107,10 +107,10 @@
 
   <action>
     <icon>folder-remote</icon>
-    <name>Archive Home Folders to NAS</name>
+    <name>Archive Home Folder to NAS</name>
     <submenu>NAS</submenu>
     <unique-id>1782052090035038-901</unique-id>
-    <command>archive-home-folders</command>
+    <command>archive-home-folder-to-nas</command>
     <description>Archive Downloads, Documents, Pictures, Music and Videos to NAS</description>
     <patterns>*</patterns>
     <directories/>
