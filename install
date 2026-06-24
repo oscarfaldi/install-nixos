@@ -129,6 +129,24 @@ EOF
     fi
 }
 
+restore_libreoffice() {
+    print_header "LibreOffice Configuration"
+
+    mkdir -p "$HOME/.config/libreoffice/4/user"
+
+    if [[ -f "$CONFIG_DIR/.config/libreoffice/4/user/registrymodifications.xcu" ]]; then
+        cp -f \
+            "$CONFIG_DIR/.config/libreoffice/4/user/registrymodifications.xcu" \
+            "$HOME/.config/libreoffice/4/user/registrymodifications.xcu"
+
+        echo "✓ LibreOffice settings restored."
+    else
+        echo "• No LibreOffice settings found."
+    fi
+
+    echo
+}
+
 bootstrap_system() {
     print_header "Rebuilding Rainier System"
     echo "Building next generation for boot..."
@@ -148,18 +166,29 @@ bootstrap_system() {
 main() {
     print_header "Switching Rainier to unstable & installing home-manager"
 
+    echo "Please authenticate once for the installation."
+    echo
+
+    sudo -v
+
+    while true; do
+        sudo -n true
+        sleep 60
+        kill -0 "$$" || exit
+    done 2>/dev/null &
+
     import_hardware_config
     configure_nix_channels
     setup_smb_credentials
+    restore_libreoffice
     bootstrap_system
 
     print_header "Final Step"
     echo "Rebooting in 5 seconds..."
     echo
-    
+
     sleep 5
     sudo reboot
 }
 
-# Run the main function
 main "$@"
