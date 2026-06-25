@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# ============================================================
+# Configuration
+# ============================================================
+
+# Apple ProRes 422 HQ output suffix.
+OUTPUT_SUFFIX=".prores422hq"
+
+# ============================================================
+# Helper Functions
+# ============================================================
+
+# Send a desktop notification.
+notify() {
+    notify-send \
+        -i applications-multimedia \
+        "$1" \
+        "$2"
+}
+
+# Convert a single video to Apple ProRes 422 HQ.
+convert_video() {
+    local input="$1"
+
+    local directory
+    directory="$(dirname "$input")"
+
+    local filename
+    filename="$(basename "$input")"
+
+    local basename="${filename%.*}"
+
+    local output="${directory}/${basename}${OUTPUT_SUFFIX}.mov"
+
+    # Skip conversion if the output already exists.
+    if [[ -f "$output" ]]; then
+        notify \
+            "Conversion Skipped" \
+            "$(basename "$output") already exists."
+        return
+    fi
+
+    echo "Converting:"
+    echo "  Input : $input"
+    echo "  Output: $output"
+
+    if ffmpeg \
+        -hide_banner \
+        -y \
+        -i "$input" \
+        -map 0 \
+        -map_metadata 0 \
+        -c:v prores_ks \
+        -profile:v 3 \
+        -pix_fmt yuv422p10le \
+        -c:a pcm_s24le \
+        "$output"
+    then
+        # Preserve the original modification timestamp.
+        touch -r "$input" "$output"
+
+        notify \
+            "Conversion Complete" \
+            "$(basename "$output")"
+    else
+        rm -f "$output"
+
+        notify \
+            "Conversion Failed" \
+            "$(basename "$input")"
+    fi
+}
+
+# ============================================================
+# Main
+# ============================================================
+
+# Ensure at least one file was provided.
+if [[ $# -eq 0 ]]; then
+    notify \
+        "Conversion Failed" \
+        "No input files were provided."
+
+    exit 1
+fi
+
+# Convert every selected file.
+for file in "$@"; do
+    convert_video "$file"
+done
