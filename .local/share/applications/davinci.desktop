@@ -2,7 +2,7 @@
 Type=Application
 Name=DaVinci Resolve
 Comment=Professional Video Editor
-Exec=davinci
+Exec=davinci-resolve
 Icon=davinci-resolve
 Terminal=false
 Categories=AudioVideo;Video;Graphics;
