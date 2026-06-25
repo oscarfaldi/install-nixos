@@ -49,7 +49,6 @@ convert_video() {
 
     if ffmpeg \
         -hide_banner \
-        -y \
         -i "$input" \
         -map 0 \
         -map_metadata 0 \
