@@ -81,7 +81,7 @@ in
 
     (mkPWA {
       name = "Obsidian";
-      url = "http://10.10.10.10:3001/";
+      url = "https://10.10.10.10:3001/";
       icon = "/home/oscarfaldi/.config/assets/icons/pwa/obsidian.svg";
     })
 
