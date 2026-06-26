@@ -95,7 +95,7 @@
     <icon>folder-remote</icon>
     <name>Move to NAS Valhalla Videos Staging</name>
     <submenu>NAS</submenu>
-    <unique-id>1782052090035038-902</unique-id>
+    <unique-id>1782052090035038-302</unique-id>
     <command>move-to-valhalla-videos-staging %F</command>
     <description>Move selected video files to NAS staging area</description>
     <range>*</range>
@@ -113,7 +113,7 @@
     <icon>folder-remote</icon>
     <name>Move to NAS Valhalla Pictures Staging</name>
     <submenu>NAS</submenu>
-    <unique-id>1782052090035038-901</unique-id>
+    <unique-id>1782052090035038-303</unique-id>
     <command>move-to-valhalla-pictures-staging %F</command>
     <description>Move selected media files to NAS staging area</description>
     <range>*</range>
@@ -131,7 +131,7 @@
     <icon>package-x-generic</icon>
     <name>Compress to ZIP</name>
     <submenu>Documents</submenu>
-    <unique-id>1781935446753343-302</unique-id>
+    <unique-id>1781935446753343-304</unique-id>
     <command>compress-to-zip %F</command>
     <description>Create ZIP archive from selected files</description>
     <range>*</range>
@@ -148,7 +148,7 @@
     <icon>package-x-generic</icon>
     <name>Extract Archive Here</name>
     <submenu>Documents</submenu>
-    <unique-id>1781935446753343-303</unique-id>
+    <unique-id>1781935446753343-305</unique-id>
     <command>extract-here %f</command>
     <description>Extract archive contents into current folder</description>
     <range>*</range>
@@ -168,7 +168,31 @@
     <command>convert-to-avif %F</command>
     <description>Convert image to AVIF</description>
     <range>*</range>
-    <patterns>*.jpg;*.jpeg;*.png;*.gif;*.webp;*.bmp;*.tif;*.tiff</patterns>
+    <patterns>*.jpg;*.jpeg;*.png;*.webp;*.avif;*.gif;*.bmp;*.tif;*.tiff;*.svg;*.heic;*.heif</patterns>
+    <image-files/>
+  </action>
+
+  <action>
+    <icon>image-x-generic</icon>
+    <name>Convert to PNG</name>
+    <submenu>Media</submenu>
+    <unique-id>1781935446753343-402</unique-id>
+    <command>convert-to-png %F</command>
+    <description>Convert image to PNG</description>
+    <range>*</range>
+    <patterns>*.jpg;*.jpeg;*.png;*.webp;*.avif;*.gif;*.bmp;*.tif;*.tiff;*.svg;*.heic;*.heif</patterns>
+    <image-files/>
+  </action>
+
+  <action>
+    <icon>image-x-generic</icon>
+    <name>Convert to JPEG</name>
+    <submenu>Media</submenu>
+    <unique-id>1781935446753343-403</unique-id>
+    <command>convert-to-jpeg %F</command>
+    <description>Convert image to JPEG</description>
+    <range>*</range>
+    <patterns>*.jpg;*.jpeg;*.png;*.webp;*.avif;*.gif;*.bmp;*.tif;*.tiff;*.svg;*.heic;*.heif</patterns>
     <image-files/>
   </action>
 
@@ -176,7 +200,7 @@
     <icon>object-rotate-right</icon>
     <name>Rotate Image Right</name>
     <submenu>Media</submenu>
-    <unique-id>1781935446753343-402</unique-id>
+    <unique-id>1781935446753343-404</unique-id>
     <command>rotate-image-right %f</command>
     <description>Rotate image 90° clockwise</description>
     <range>*</range>
@@ -188,7 +212,7 @@
     <icon>object-rotate-left</icon>
     <name>Rotate Image Left</name>
     <submenu>Media</submenu>
-    <unique-id>1781935446753343-403</unique-id>
+    <unique-id>1781935446753343-405</unique-id>
     <command>rotate-image-left %f</command>
     <description>Rotate image 90° counter-clockwise</description>
     <range>*</range>
@@ -228,7 +252,7 @@
     <icon>applications-multimedia</icon>
     <name>Convert to ProRes 422 HQ</name>
     <submenu>Media</submenu>
-    <unique-id>1781935446753343-502</unique-id>
+    <unique-id>1781935446753343-503</unique-id>
     <command>convert-to-prores %F</command>
     <description>Convert selected videos to Apple ProRes 422 HQ for DaVinci Resolve</description>
     <range>*</range>
@@ -240,7 +264,7 @@
     <icon>video-x-generic</icon>
     <name>Rename TS → MTS</name>
     <submenu>Media</submenu>
-    <unique-id>1781935446753343-503</unique-id>
+    <unique-id>1781935446753343-504</unique-id>
     <command>rename-ts-to-mts %F</command>
     <description>Rename TS files for better thumbnail and MIME support</description>
     <range>*</range>
