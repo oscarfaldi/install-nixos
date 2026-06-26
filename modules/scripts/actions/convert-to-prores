@@ -21,21 +21,75 @@ notify() {
         "$2"
 }
 
+# Run FFmpeg with a GTK progress dialog.
+run_ffmpeg() {
+    local input="$1"
+    local output="$2"
+    local duration
+
+    duration=$(
+        ffprobe \
+            -v error \
+            -show_entries format=duration \
+            -of default=noprint_wrappers=1:nokey=1 \
+            "$input"
+    )
+
+    ffmpeg \
+        -hide_banner \
+        -nostats \
+        -progress pipe:1 \
+        -i "$input" \
+        -map 0 \
+        -map_metadata 0 \
+        -c:v prores_ks \
+        -profile:v 3 \
+        -pix_fmt yuv422p10le \
+        -c:a pcm_s24le \
+        "$output" 2>/dev/null |
+    awk -F= -v duration="$duration" '
+        /^out_time_ms/ {
+            seconds = $2 / 1000000
+            percent = int((seconds / duration) * 100)
+
+            if (percent > 100) {
+                percent = 100
+            }
+
+            print percent
+            print "# " percent "% completed"
+            fflush()
+        }
+    ' |
+    zenity \
+        --progress \
+        --title="Apple ProRes 422 HQ" \
+        --text="$(basename "$input")" \
+        --percentage=0 \
+        --width=450 \
+        --auto-close \
+        --auto-kill
+}
+
 # Convert a single video to Apple ProRes 422 HQ.
 convert_video() {
     local input="$1"
-
     local directory
     directory="$(dirname "$input")"
 
+    # 1. Extract the filename without the path.
     local filename
     filename="$(basename "$input")"
 
-    local basename="${filename%.*}"
+    # 2. Extract the filename without its extension.
+    local basename
+    basename="${filename%.*}"
 
-    local output="${directory}/${basename}${OUTPUT_SUFFIX}.mov"
+    # 3. Build the output filename.
+    local output
+    output="${directory}/${basename}${OUTPUT_SUFFIX}.mov"
 
-    # Skip conversion if the output already exists.
+    # 4. Skip conversion if the output already exists.
     if [[ -f "$output" ]]; then
         notify \
             "Conversion Skipped" \
@@ -47,17 +101,8 @@ convert_video() {
     echo "  Input : $input"
     echo "  Output: $output"
 
-    if ffmpeg \
-        -hide_banner \
-        -i "$input" \
-        -map 0 \
-        -map_metadata 0 \
-        -c:v prores_ks \
-        -profile:v 3 \
-        -pix_fmt yuv422p10le \
-        -c:a pcm_s24le \
-        "$output"
-    then
+    # 5. Convert the video.
+    if run_ffmpeg "$input" "$output"; then
         # Preserve the original modification timestamp.
         touch -r "$input" "$output"
 
@@ -82,7 +127,6 @@ if [[ $# -eq 0 ]]; then
     notify \
         "Conversion Failed" \
         "No input files were provided."
-
     exit 1
 fi
 
