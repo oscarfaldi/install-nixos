@@ -18,8 +18,6 @@ in
     (mkScript "configuration-menu")
     (mkScript "modules-menu")
     (mkScript "power-menu")
-    (mkScript "repo-menu")
-    (mkScript "scripts-menu")
     (mkScript "system-menu")
     (mkScript "nas-menu")
   ];
