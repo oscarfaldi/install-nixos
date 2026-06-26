@@ -15,6 +15,6 @@ in
 
   environment.systemPackages = [
     (mkScript "cs2")
-    (mkScript "davinci-resolve")
+    (mkScript "davinci")
   ];
 }
