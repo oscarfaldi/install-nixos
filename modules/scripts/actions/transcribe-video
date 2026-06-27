@@ -1,16 +1,18 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from pathlib import Path
-from faster_whisper import WhisperModel
 import subprocess
 import sys
 import time
+from faster_whisper import WhisperModel
 
 # ============================================================
 # Configuration
 # ============================================================
+
 MODEL = "large-v3"
 LANGUAGE = "id"
 DEVICE = "cpu"
+
 VIDEO_EXTENSIONS = {
     ".mp4",
     ".mov",
@@ -24,7 +26,10 @@ VIDEO_EXTENSIONS = {
 # ============================================================
 # Notifications
 # ============================================================
-def notify(title: str, message: str):
+
+
+def notify(title: str, message: str) -> None:
+    """Sends a system notification via notify-send."""
     try:
         subprocess.run(
             ["notify-send", title, message],
@@ -33,44 +38,23 @@ def notify(title: str, message: str):
     except Exception:
         pass
 
-def zenity_success(message: str):
-    try:
-        subprocess.run(
-            [
-                "zenity",
-                "--info",
-                "--title",
-                "Subtitle Ready",
-                "--text",
-                message,
-                "--width=450",
-            ],
-            check=False,
-        )
-    except Exception:
-        pass
-
-def zenity_error(message: str):
-    try:
-        subprocess.run(
-            [
-                "zenity",
-                "--error",
-                "--title",
-                "Subtitle Generation Failed",
-                "--text",
-                message,
-                "--width=500",
-            ],
-            check=False,
-        )
-    except Exception:
-        pass
 
 # ============================================================
-# SRT Helpers
+# Helpers
 # ============================================================
+
+
 def format_timestamp(seconds: float) -> str:
+    """Formats seconds into standard HH:MM:SS format."""
+    seconds = int(seconds)
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    secs = seconds % 60
+    return f"{hours:02}:{minutes:02}:{secs:02}"
+
+
+def format_srt_timestamp(seconds: float) -> str:
+    """Formats seconds into SRT-compliant HH:MM:SS,mmm format."""
     milliseconds = int(round(seconds * 1000))
     hours = milliseconds // 3600000
     milliseconds %= 3600000
@@ -81,140 +65,116 @@ def format_timestamp(seconds: float) -> str:
     secs = milliseconds // 1000
     milliseconds %= 1000
 
-    return (
-        f"{hours:02}:{minutes:02}:{secs:02},{milliseconds:03}"
-    )
+    return f"{hours:02}:{minutes:02}:{secs:02},{milliseconds:03}"
+
 
 def next_available_srt(video_path: Path) -> Path:
+    """Finds the next non-conflicting SRT file path."""
     first = video_path.with_suffix(".srt")
-
     if not first.exists():
         return first
 
     counter = 1
-
     while True:
-        candidate = (
-            video_path.parent
-            / f"{video_path.stem} ({counter}).srt"
-        )
-
+        candidate = video_path.parent / f"{video_path.stem} ({counter}).srt"
         if not candidate.exists():
             return candidate
-
         counter += 1
+
 
 # ============================================================
 # Validation
 # ============================================================
+
 if len(sys.argv) != 2:
+    print("[ERROR] Usage: ./script.py <input_video_file>")
     sys.exit(1)
 
 video_path = Path(sys.argv[1]).expanduser()
 
 if not video_path.exists():
-    message = f"File not found:\n{video_path}"
-
-    notify(
-        "Subtitle Generation Failed",
-        video_path.name,
-    )
-
-    zenity_error(message)
-
+    notify("Subtitle Generation Failed", f"File not found: {video_path.name}")
     sys.exit(1)
 
 if video_path.suffix.lower() not in VIDEO_EXTENSIONS:
-    message = (
-        f"Unsupported file type:\n"
-        f"{video_path.suffix}"
-    )
-
     notify(
         "Subtitle Generation Failed",
-        video_path.name,
+        f"Unsupported extension: {video_path.suffix}",
     )
-
-    zenity_error(message)
-
     sys.exit(1)
 
 # ============================================================
-# Processing
+# Main
 # ============================================================
+
+notify("Generating Subtitle", video_path.name)
 srt_path = next_available_srt(video_path)
-
-notify(
-    "Generating Subtitle",
-    video_path.name,
-)
-
 start_time = time.time()
 
+print()
+print("=" * 60)
+print("FASTER WHISPER")
+print("=" * 60)
+print()
+print(f"Input : {video_path.name}")
+print(f"Output: {srt_path.name}")
+print()
+
 try:
-    model = WhisperModel(
-        MODEL,
-        device=DEVICE,
-    )
+    print("Loading model...")
+    print()
 
-    segments, info = model.transcribe(
-        str(video_path),
-        language=LANGUAGE,
-    )
+    model = WhisperModel(MODEL, device=DEVICE)
 
-    with open(
-        srt_path,
-        "w",
-        encoding="utf-8",
-    ) as srt:
+    print("Model loaded.")
+    print()
 
-        for index, segment in enumerate(
-            segments,
-            start=1,
-        ):
+    segments, info = model.transcribe(str(video_path), language=LANGUAGE)
+    total_duration = info.duration
+
+    print(f"Duration: {format_timestamp(total_duration)}")
+    print()
+
+    last_percent = -1
+
+    with open(srt_path, "w", encoding="utf-8") as srt:
+        for index, segment in enumerate(segments, start=1):
+            percent = int((segment.end / total_duration) * 100)
+
+            if percent > 100:
+                percent = 100
+
+            if percent != last_percent:
+                print(
+                    f"[{percent:3d}%] "
+                    f"{format_timestamp(segment.end)} / "
+                    f"{format_timestamp(total_duration)}"
+                )
+                last_percent = percent
+
             srt.write(f"{index}\n")
-
             srt.write(
-                f"{format_timestamp(segment.start)} --> "
-                f"{format_timestamp(segment.end)}\n"
+                f"{format_srt_timestamp(segment.start)} --> "
+                f"{format_srt_timestamp(segment.end)}\n"
             )
-
-            srt.write(
-                segment.text.strip()
-            )
-
-            srt.write("\n\n")
+            srt.write(f"{segment.text.strip()}\n\n")
 
 except Exception as error:
-    notify(
-        "Subtitle Generation Failed",
-        video_path.name,
-    )
-
-    zenity_error(str(error))
-
+    notify("Subtitle Generation Failed", str(error))
     raise
 
 # ============================================================
 # Completion
 # ============================================================
-elapsed = round(
-    time.time() - start_time
-)
 
-notify(
-    "Subtitle Ready",
-    srt_path.name,
-)
+elapsed = round(time.time() - start_time)
 
-zenity_success(
-    (
-        f"Subtitle generated successfully.\n\n"
-        f"File:\n{srt_path.name}\n\n"
-        f"Time:\n{elapsed} seconds"
-    )
-)
+print()
+print("=" * 60)
+print("COMPLETE")
+print("=" * 60)
+print()
+print(f"SRT : {srt_path}")
+print(f"Time: {elapsed} seconds")
 
-print(
-    f"Subtitle saved: {srt_path}"
-)
+notify("Subtitle Ready", srt_path.name)
