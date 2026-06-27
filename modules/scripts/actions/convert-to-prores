@@ -1,136 +1,80 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
 # ============================================================
-# Configuration
+# Functions
 # ============================================================
 
-# Apple ProRes 422 HQ output suffix.
-OUTPUT_SUFFIX=".prores422hq"
-
-# ============================================================
-# Helper Functions
-# ============================================================
-
-# Send a desktop notification.
-notify() {
-    notify-send \
-        -i applications-multimedia \
-        "$1" \
-        "$2"
-}
-
-# Run FFmpeg with a GTK progress dialog.
 run_ffmpeg() {
     local input="$1"
     local output="$2"
-    local duration
 
-    duration=$(
-        ffprobe \
-            -v error \
-            -show_entries format=duration \
-            -of default=noprint_wrappers=1:nokey=1 \
-            "$input"
-    )
+    # Launch Ghostty and monitor the FFmpeg process
+    ghostty \
+        --title="ProRes Conversion" \
+        -e bash -c "
+            ffmpeg \
+                -hide_banner \
+                -stats_period 1 \
+                -i \"$input\" \
+                -map 0:v:0 \
+                -map '0:a?' \
+                -sn \
+                -dn \
+                -c:v prores_ks \
+                -profile:v 2 \
+                -pix_fmt yuv422p10le \
+                -c:a pcm_s24le \
+                \"$output\"
 
-    ffmpeg \
-        -hide_banner \
-        -nostats \
-        -progress pipe:1 \
-        -i "$input" \
-        -map 0 \
-        -map_metadata 0 \
-        -c:v prores_ks \
-        -profile:v 2 \
-        -pix_fmt yuv422p10le \
-        -c:a pcm_s24le \
-        "$output" 2>/dev/null |
-    awk -F= -v duration="$duration" '
-        /^out_time_ms/ {
-            seconds = $2 / 1000000
-            percent = int((seconds / duration) * 100)
+            # Capture the exit status of the FFmpeg command
+            STATUS=\$?
 
-            if (percent > 100) {
-                percent = 100
-            }
+            # If FFmpeg fails, keep the terminal open for 5 seconds to inspect errors
+            if [ \$STATUS -ne 0 ]; then
+                echo -e '\n\e[1;31m[ERROR] FFmpeg conversion failed!\e[0m'
+                echo 'Closing window in 5 seconds...'
+                sleep 5
+            fi
 
-            print percent
-            print "# " percent "% completed"
-            fflush()
-        }
-    ' |
-    zenity \
-        --progress \
-        --title="Apple ProRes 422 HQ" \
-        --text="$(basename "$input")" \
-        --percentage=0 \
-        --width=450 \
-        --auto-close \
-        --auto-kill
+            # Forward the exit status out of Ghostty
+            exit \$STATUS
+        "
 }
 
-# Convert a single video to Apple ProRes 422 HQ.
-convert_video() {
-    local input="$1"
-    local directory
-    directory="$(dirname "$input")"
-
-    # 1. Extract the filename without the path.
-    local filename
-    filename="$(basename "$input")"
-
-    # 2. Extract the filename without its extension.
-    local basename
-    basename="${filename%.*}"
-
-    # 3. Build the output filename.
-    local output
-    output="${directory}/${basename}${OUTPUT_SUFFIX}.mov"
-
-    # 4. Skip conversion if the output already exists.
-    if [[ -f "$output" ]]; then
-        notify \
-            "Conversion Skipped" \
-            "$(basename "$output") already exists."
-        return
-    fi
-
-    echo "Converting:"
-    echo "  Input : $input"
-    echo "  Output: $output"
-
-    # 5. Convert the video.
-    if run_ffmpeg "$input" "$output"; then
-        # Preserve the original modification timestamp.
-        touch -r "$input" "$output"
-
-        notify \
-            "Conversion Complete" \
-            "$(basename "$output")"
-    else
-        rm -f "$output"
-
-        notify \
-            "Conversion Failed" \
-            "$(basename "$input")"
-    fi
+notify() {
+    local title="$1"
+    local message="$2"
+    notify-send "$title" "$message"
 }
 
 # ============================================================
 # Main
 # ============================================================
 
-# Ensure at least one file was provided.
-if [[ $# -eq 0 ]]; then
-    notify \
-        "Conversion Failed" \
-        "No input files were provided."
+# Ensure the input argument from Thunar or CLI is present
+if [ -z "$1" ]; then
+    notify "Error" "No input file specified."
     exit 1
 fi
 
-# Convert every selected file.
-for file in "$@"; do
-    convert_video "$file"
-done
+input="$1"
+
+# Generate output filename (appends _prores.mov to the base name)
+output="${input%.*}_prores.mov"
+
+# Execute conversion and handle results
+if run_ffmpeg "$input" "$output"; then
+    # Match the timestamp of the output file with the original file
+    touch -r "$input" "$output"
+
+    notify \
+        "Conversion Complete" \
+        "$(basename "$output")"
+else
+    # Remove corrupt or incomplete output file on failure
+    rm -f "$output"
+
+    notify \
+        "Conversion Failed" \
+        "$(basename "$input")"
+fi
