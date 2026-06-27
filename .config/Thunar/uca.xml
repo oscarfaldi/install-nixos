@@ -100,9 +100,10 @@
     <description>Move selected video files to NAS staging area</description>
     <range>*</range>
     <patterns>
-        *.mp4;*.mkv;*.mov;*.webm;
-        *.avi;*.flv;*.wmv;*.m4v;
-        *.mts;*.m2ts;*.ts;*.mpeg;
+        *.mp4;*.MP4;*.mov;*.MOV;
+        *.mkv;*.MKV;*.webm;*.avi;
+        *.flv;*.wmv;*.m4v;*.mts;
+        *.m2ts;*.ts;*.mpeg;
         *.mpg;*.3gp;*.ogv
     </patterns>
     <image-files/>
@@ -118,9 +119,10 @@
     <description>Move selected media files to NAS staging area</description>
     <range>*</range>
     <patterns>
-        *.mp4;*.mkv;*.mov;*.webm;
-        *.avi;*.flv;*.wmv;*.m4v;
-        *.mts;*.m2ts;*.ts;*.mpeg;
+        *.mp4;*.MP4;*.mov;*.MOV;
+        *.mkv;*.MKV;*.webm;*.avi;
+        *.flv;*.wmv;*.m4v;*.mts;
+        *.m2ts;*.ts;*.mpeg;
         *.mpg;*.3gp;*.ogv
     </patterns>
     <image-files/>
@@ -232,7 +234,7 @@
     <command>rotate-video-right %f</command>
     <description>Rotate video 90° clockwise</description>
     <range>*</range>
-    <patterns>*.mp4;*.mov;*.mkv;*.webm;*.mts;*.m2ts;*.ts</patterns>
+    <patterns>*.mp4;*.MP4;*.mov;*.MOV;*.mkv;*.MKV;*.webm;*.mts;*.m2ts;*.ts</patterns>
     <video-files/>
   </action>
 
@@ -244,7 +246,7 @@
     <command>rotate-video-left %f</command>
     <description>Rotate video 90° counter-clockwise</description>
     <range>*</range>
-    <patterns>*.mp4;*.mov;*.mkv;*.webm;*.mts;*.m2ts;*.ts</patterns>
+    <patterns>*.mp4;*.MP4;*.mov;*.MOV;*.mkv;*.MKV;*.webm;*.mts;*.m2ts;*.ts</patterns>
     <video-files/>
   </action>
 
@@ -259,16 +261,32 @@
     <patterns>*.ts</patterns>
     <other-files/>
   </action>
+
+  <!-- ========================================== -->
+  <!-- 6. VIDEO PROCESSING                        -->
+  <!-- ========================================== -->
   
   <action>
     <icon>applications-multimedia</icon>
     <name>Convert to ProRes 422 HQ</name>
     <submenu>Content Creation</submenu>
-    <unique-id>1781935446753343-504</unique-id>
+    <unique-id>1781935446753343-601</unique-id>
     <command>convert-to-prores %F</command>
     <description>Convert selected videos to Apple ProRes 422 HQ for DaVinci Resolve</description>
     <range>*</range>
-    <patterns>*.mp4;*.mov;*.mkv;*.webm;*.mts;*.m2ts;*.ts;*.avi;*.mxf;*.m4v</patterns>
+    <patterns>*.mp4;*.MP4;*.mov;*.MOV;*.mkv;*.MKV;*.webm;*.mts;*.m2ts;*.ts;*.avi;*.mxf;*.m4v</patterns>
+    <video-files/>
+  </action>
+
+    <action>
+    <icon>applications-multimedia</icon>
+    <name>Convert to ProRes 422 HQ (Monitor)</name>
+    <submenu>Content Creation</submenu>
+    <unique-id>1781935446753343-602</unique-id>
+    <command>ghostty --title="ProRes Conversion" -e convert-to-prores %F</command>
+    <description>Convert selected videos to Apple ProRes 422 HQ for DaVinci Resolve with live monitoring</description>
+    <range>*</range>
+    <patterns>*.mp4;*.MP4;*.mov;*.MOV;*.mkv;*.MKV;*.webm;*.mts;*.m2ts;*.ts;*.avi;*.mxf;*.m4v</patterns>
     <video-files/>
   </action>
 
@@ -277,10 +295,22 @@
     <name>Transcribe Video to SRT</name>
     <submenu>Content Creation</submenu>
     <unique-id>1781935446753343-505</unique-id>
-    <command>transcribe-video %f</command>
+    <command>transcribe-video %F</command>
     <description>Generate Indonesian SRT subtitles using Faster-Whisper</description>
     <range>*</range>
-    <patterns>*.mp4;*.mov;*.mkv;*.webm;*.mts;*.m2ts;*.ts;*.avi;*.mxf;*.m4v</patterns>
+    <patterns>*.mp4;*.MP4;*.mov;*.MOV;*.mkv;*.MKV;*.webm;*.mts;*.m2ts;*.ts;*.avi;*.mxf;*.m4v</patterns>
+    <video-files/>
+  </action>
+
+    <action>
+    <icon>applications-multimedia</icon>
+    <name>Transcribe Video to SRT (Monitor)</name>
+    <submenu>Content Creation</submenu>
+    <unique-id>1781935446753343-505</unique-id>
+    <command>ghostty --title="Subtitle Generation" -e transcribe-video %F</command>
+    <description>Generate Indonesian SRT subtitles using Faster-Whisper with live monitoring</description>
+    <range>*</range>
+    <patterns>*.mp4;*.MP4;*.mov;*.MOV;*.mkv;*.MKV;*.webm;*.mts;*.m2ts;*.ts;*.avi;*.mxf;*.m4v</patterns>
     <video-files/>
   </action>
 
