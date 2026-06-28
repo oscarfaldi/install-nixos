@@ -151,6 +151,7 @@
 
     atril
     pdfarranger
+    poppler_utils
     pandoc
     tectonic
     img2pdf
@@ -178,6 +179,9 @@
     ffmpeg
     ffmpegthumbnailer
 
+    mediainfo
+    exiftool
+
     libwebp
     libavif
     librsvg
@@ -196,8 +200,6 @@
 
     pwvucontrol
 
-    zenity
-
     wl-clipboard
 
     brightnessctl
@@ -208,6 +210,8 @@
     wlogout
 
     nvibrant
+
+    yad
 
     gparted
     ntfs3g
