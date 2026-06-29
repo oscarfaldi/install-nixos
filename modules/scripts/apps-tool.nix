@@ -16,5 +16,7 @@ in
   environment.systemPackages = [
     (mkScript "cs2")
     (mkScript "davinci")
+    (mkScript "btop-launch")
+    (mkScript "yazi-launch")
   ];
 }
