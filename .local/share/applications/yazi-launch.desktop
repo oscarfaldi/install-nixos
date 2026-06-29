@@ -3,6 +3,6 @@ Type=Application
 Name=Yazi
 Comment=Terminal File Manager
 Exec=yazi-launch
-Icon=system-file-manager
+Icon=/home/oscarfaldi/System/.config/assets/icons/desktop/yazi.png
 Terminal=false
 Categories=System;FileManager;
