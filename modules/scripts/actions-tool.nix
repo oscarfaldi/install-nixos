@@ -30,7 +30,7 @@ in
     (mkShellScript "copy-filename")
     (mkShellScript "copy-filename-no-extension")
     (mkShellScript "copy-full-path")
-    (mkShellScript "inspect-file")
+    # (mkShellScript "inspect-file")
 
     (mkShellScript "rotate-image-left")
     (mkShellScript "rotate-image-right")
