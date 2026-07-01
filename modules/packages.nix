@@ -56,15 +56,6 @@
   # Bluetooth GUI
   # services.blueman.enable = true;
 
-  # Syncthing
-  services.syncthing = {
-    enable = true;
-    user = "oscarfaldi";
-    dataDir = "/home/oscarfaldi";
-    configDir = "/home/oscarfaldi/.config/syncthing";
-    openDefaultPorts = true;
-  };
-
   # ============================================================
   # Desktop Applications
   # ============================================================
